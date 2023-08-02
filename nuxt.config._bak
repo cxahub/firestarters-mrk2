@@ -1,0 +1,10 @@
+export default {
+  modules: ["@nuxtjs/tailwindcss"],
+  buildModules: ["@nuxtjs/google-fonts"],
+  googleFonts: {
+    families: {
+      Roboto: true,
+      "Roboto+Condensed": true,
+    },
+  },
+};
