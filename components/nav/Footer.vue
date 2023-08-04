@@ -2,32 +2,32 @@
   <footer class="w-full mt-auto block float-left bg-fs-brown">
     <div class="container mx-auto">
       <div class="py-10 grid grid-rows-1">
-        <div class="grid lg:grid-cols-3 sm:grid-cols-1">
-          <div class="lg:col-span-2 sm:col-span-1">
+        <div class="grid grid-cols-3">
+          <div class="col-span-2">
             <NuxtLink to="/" class="hover:text-fs-yellow"
-              ><img
+              ><NuxtImg
                 role="img"
-                class="block float-left w-8 mt-2 mr-3"
-                src="~@/assets/svg/firestarters-icon.svg"
+                class="block float-left lg:w-8 sm:w-6 mt-1 mr-3"
+                src="/images/svg/firestarters-icon.svg"
                 aria-label="firestarters icon"
                 alt="Firestarters Icon"
               />
               <span
-                class="block float-left text-xl text-white uppercase font-bold"
+                class="block float-left font-roboto lg:text-xl sm:text-lg text-white uppercase font-bold"
               >
                 Firestarters
                 <span
-                  class="block text-sm font-roboto-condensed text-fs-light-brown capitalize"
+                  class="font-roboto-condensed block lg:text-sm sm:text-xs text-fs-light-brown capitalize"
                   >Your Global Business Community</span
                 >
               </span>
             </NuxtLink>
           </div>
           <div>
-            <img
-              class="block lg:float-right lg:pt-0 sm:pt-5"
+            <NuxtImg
+              class="block lg:w-1/6 sm:w-1/3 float-right"
               role="img"
-              src="~@/assets/svg/footer-logo.svg"
+              src="/images/svg/footer-logo.svg"
               aria-label="cxa logo"
             />
           </div>
@@ -36,82 +36,94 @@
       <div class="pb-10 grid grid-rows-1">
         <div class="grid lg:grid-cols-3 sm:grid-cols-1">
           <div>
-            <h6 class="font-roboto-condensed text-white text-lg uppercase py-4">
+            <h6 class="text-white font-bold text-lg uppercase py-4">
               Quick Links
             </h6>
             <NuxtLink
-              to="/"
-              class="block font-roboto-condensed text-md text-fs-yellow hover:text-white"
+              to="/about"
+              class="block text-md text-fs-yellow hover:text-white"
+              activeClass="underline decoration-solid"
               >About Us</NuxtLink
             >
             <NuxtLink
-              to="/"
-              class="block font-roboto-condensed text-md text-fs-yellow hover:text-white"
+              to="/academy"
+              class="block text-md text-fs-yellow hover:text-white"
+              activeClass="underline decoration-solid"
               >Academy</NuxtLink
             >
             <NuxtLink
-              to="/"
-              class="block font-roboto-condensed text-md text-fs-yellow hover:text-white"
+              to="/events"
+              class="block text-md text-fs-yellow hover:text-white"
+              activeClass="underline decoration-solid"
               >Events</NuxtLink
             >
             <NuxtLink
-              to="/"
-              class="block font-roboto-condensed text-md text-fs-yellow hover:text-white"
+              to="/insights"
+              class="block text-md text-fs-yellow hover:text-white"
+              activeClass="underline decoration-solid"
               >Insights</NuxtLink
             >
             <NuxtLink
-              to="/"
-              class="block font-roboto-condensed text-md text-fs-yellow hover:text-white"
+              to="/tools"
+              class="block text-md text-fs-yellow hover:text-white"
+              activeClass="underline decoration-solid"
               >Tools</NuxtLink
             >
             <NuxtLink
-              to="/"
-              class="block font-roboto-condensed text-md text-fs-yellow hover:text-white"
+              to="/cxa"
+              class="block text-md text-fs-yellow hover:text-white"
+              activeClass="underline decoration-solid"
               >Customer Experience Advisory</NuxtLink
             >
           </div>
           <div>
-            <h6 class="font-roboto-condensed text-white text-lg uppercase py-4">
+            <h6 class="text-white font-bold text-lg uppercase py-4">
               Support & Inquires
             </h6>
             <NuxtLink
               :to="`mailto:${companyEmail}?subject=Firestarters General Inquiry`"
-              class="block font-roboto-condensed text-md text-fs-yellow hover:text-white"
+              class="block text-md text-fs-yellow hover:text-white"
               >Email Us</NuxtLink
             >
             <NuxtLink
-              to="/"
-              class="block font-roboto-condensed text-md text-fs-yellow hover:text-white"
+              to="/forgot-password"
+              class="block text-md text-fs-yellow hover:text-white"
+              activeClass="underline decoration-solid"
               >Forgot Password</NuxtLink
             >
           </div>
           <div>
-            <h6 class="font-roboto-condensed text-white text-lg uppercase py-4">
+            <h6 class="text-white font-bold text-lg uppercase py-4">
               Site Information
             </h6>
             <NuxtLink
-              to="/"
-              class="block font-roboto-condensed text-md text-fs-yellow hover:text-white"
+              to="/privacy"
+              class="block text-md text-fs-yellow hover:text-white"
+              activeClass="underline decoration-solid"
               >Privacy Policy</NuxtLink
             >
             <NuxtLink
-              to="/"
-              class="block font-roboto-condensed text-md text-fs-yellow hover:text-white"
+              to="/terms"
+              class="block text-md text-fs-yellow hover:text-white"
+              activeClass="underline decoration-solid"
               >Terms of Use</NuxtLink
             >
             <NuxtLink
-              to="/"
-              class="block font-roboto-condensed text-md text-fs-yellow hover:text-white"
+              to="/legal"
+              class="block text-md text-fs-yellow hover:text-white"
+              activeClass="underline decoration-solid"
               >Legal Disclosure</NuxtLink
             >
             <NuxtLink
-              to="/"
-              class="block font-roboto-condensed text-md text-fs-yellow hover:text-white"
+              to="/copyright"
+              class="block text-md text-fs-yellow hover:text-white"
+              activeClass="underline decoration-solid"
               >Copyright</NuxtLink
             >
             <NuxtLink
-              to="/"
-              class="block font-roboto-condensed text-md text-fs-yellow hover:text-white"
+              to="/trademark"
+              class="block text-md text-fs-yellow hover:text-white"
+              activeClass="underline decoration-solid"
               >Trademark</NuxtLink
             >
           </div>
@@ -119,26 +131,26 @@
       </div>
       <div class="grid grid-rows-1">
         <NuxtLink :to="`${linkedInURL}`" target="_blank">
-          <img
+          <NuxtImg
             class="mx-auto"
             role="img"
-            src="~@/assets/svg/linkedin-icon.svg"
+            src="/images/svg/linkedin-icon.svg"
             aria-label="linkedin icon"
           />
         </NuxtLink>
       </div>
       <div class="py-10 grid grid-rows-1">
-        <h6 class="font-roboto font-black text-xl text-center text-white pb-4">
+        <h6 class="font-black text-xl text-center text-white pb-4">
           Presented by SAP®
         </h6>
-        <p class="font-roboto-condensed text-sm text-center text-white pb-4">
+        <p class="text-sm text-center text-white pb-4">
           Use of select third parties cookies or similar technologies for
           technical purposes and, with your consent, for other purposes as
           specified in the cookie policy. Consent the use of such technologies
           by using the “Accept” button. By closing this notice, you continue
           without accepting.
         </p>
-        <p class="font-roboto-condensed text-sm text-center text-white">
+        <p class="text-sm text-center text-white">
           Copyright © 2022 Firestarters. All rights reserved.
         </p>
       </div>

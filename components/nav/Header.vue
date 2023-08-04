@@ -5,15 +5,15 @@
     >
       <div class="flex items-center justify-between">
         <NuxtLink to="/" class="hover:text-fs-yellow"
-          ><img
+          ><NuxtImg
             role="img"
-            class="block float-left w-8 mt-2 mr-3"
-            src="~@/assets/svg/firestarters-icon.svg"
+            class="block float-left w-8 mt-1 mr-3"
+            src="/images/svg/firestarters-icon.svg"
             aria-label="firestarters icon"
             alt="Firestarters Icon"
           />
           <span
-            class="block float-left text-2xl text-white uppercase font-bold"
+            class="block float-left font-roboto text-2xl text-white uppercase font-bold"
           >
             Firestarters
             <span
@@ -39,48 +39,56 @@
       </div>
       <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
       <ul
-        :class="showMenu ? 'flex' : 'hidden'"
+        :class="showMenu ? 'flex min-h-screen' : 'hidden'"
         class="flex-col mt-8 space-y-4 xl:flex xl:space-y-0 xl:flex-row xl:items-center xl:space-x-10 xl:mt-0"
       >
         <li
           class="font-roboto-condensed text-base font-light text-white hover:text-fs-yellow"
         >
-          <NuxtLink to="/about">About Us</NuxtLink>
+          <NuxtLink to="/about" activeClass="text-fs-yellow">About Us</NuxtLink>
         </li>
         <li
           class="font-roboto-condensed text-base font-light text-white hover:text-fs-yellow"
         >
-          <NuxtLink to="/events">Events</NuxtLink>
+          <NuxtLink to="/events" activeClass="text-fs-yellow">Events</NuxtLink>
         </li>
         <li
           class="font-roboto-condensed text-base font-light text-white hover:text-fs-yellow"
         >
-          <NuxtLink to="/insights">Insights</NuxtLink>
+          <NuxtLink to="/insights" activeClass="text-fs-yellow"
+            >Insights</NuxtLink
+          >
         </li>
         <li
           class="font-roboto-condensed text-base font-light text-white hover:text-fs-yellow"
         >
-          <NuxtLink to="/academy">Academy</NuxtLink>
+          <NuxtLink to="/academy" activeClass="text-fs-yellow"
+            >Academy</NuxtLink
+          >
         </li>
         <li
           class="font-roboto-condensed text-base font-light text-white hover:text-fs-yellow"
         >
-          <NuxtLink to="/tools">Tools</NuxtLink>
+          <NuxtLink to="/tools" activeClass="text-fs-yellow">Tools</NuxtLink>
         </li>
         <li
           class="font-roboto-condensed text-base font-light text-white hover:text-fs-yellow"
         >
-          <NuxtLink to="/contact">Contact</NuxtLink>
+          <NuxtLink to="/contact" activeClass="text-fs-yellow"
+            >Contact</NuxtLink
+          >
         </li>
         <li
           class="font-roboto-condensed text-base font-light text-white hover:text-fs-yellow"
         >
-          <NuxtLink to="/register">Sign Up</NuxtLink>
+          <NuxtLink to="/register" activeClass="text-fs-yellow"
+            >Sign Up</NuxtLink
+          >
         </li>
         <li
           class="font-roboto-condensed text-base font-light text-white hover:text-fs-yellow"
         >
-          <NuxtLink to="/login">Login</NuxtLink>
+          <NuxtLink to="/login" activeClass="text-fs-yellow">Login</NuxtLink>
         </li>
       </ul>
     </nav>

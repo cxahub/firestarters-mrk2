@@ -1,27 +1,37 @@
 <template>
-  <NavHeader />
   <HeroPage
     :pageImage="pageImage"
     :pageTitle="pageTitle"
     :pageSubTitle="pageSubTitle"
     :pageMessage="pageMessage"
   />
-  <div class="container mx-auto">
+  <main class="container mx-auto">
     <div class="grid grid-cols-1">
       <div class="py-10">
-        <UiDiamond text="Title" />
+        <UiTitleIcon text="Title" />
       </div>
       <div>Text</div>
     </div>
-  </div>
-  <NavFooter />
+  </main>
 </template>
 
 <script>
-//Import the banner image.
-import pageImage from "~/assets/banner/page-banner-academy-badge.jpg";
+//Import image(s).
+import pageImage from "/images/banner/page-banner-academy-badge.jpg";
 
 export default {
+  setup() {
+    useHead({
+      title: "Academy Badge - Firestarters",
+      meta: [
+        {
+          name: "description",
+          content:
+            "As a member you are able to earn a badge and develop your path to certification.",
+        },
+      ],
+    });
+  },
   data() {
     return {
       pageImage: pageImage,

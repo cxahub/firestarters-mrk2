@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-cols-1">
     <div class="py-2" v-if="insights.length !== 0">
-      <UiDiamond text="Our Latest Insights" />
+      <UiTitleIcon text="Our Latest Insights" />
     </div>
     <div>
       <div v-for="(insight, index) in insights" :key="insight.id">
@@ -9,7 +9,7 @@
           <NuxtLink
             :to="`/insights/${insight.c_id}/${insight.c_canonical_title}`"
           >
-            <img
+            <NuxtImg
               role="img"
               loading="lazy"
               :src="getImage(insight.imgt_path, insight.img_file)"
@@ -20,14 +20,14 @@
 
           <!--Insight title-->
           <h1 class="font-black uppercase text-5xl py-4">
-            {{ insight.c_title }}
+            <NuxtLink
+              :to="`/insights/${insight.c_id}/${insight.c_canonical_title}`"
+              >{{ insight.c_title }}</NuxtLink
+            >
           </h1>
 
           <!--Insight tags-->
-          <div
-            class="block w-full float-left py-2"
-            v-html="splitJoin(insight.c_tag)"
-          ></div>
+          <UiTags :tags="insight.c_tag" />
 
           <!--Insight industry-->
           <InsightIndustryRel :insightid="parseInt(insight.c_id)" />
@@ -49,15 +49,12 @@
           />
 
           <div class="block float-left w-full">
-            <NuxtLink
-              :to="
+            <UiButton
+              text="Read the Full Insight"
+              :path="
                 '/insights/' + insight.c_id + '/' + insight.c_canonical_title
               "
-              class="block float-left bg-fs-yellow hover:bg-fs-yellow-light font-bold uppercase py-4 px-4 my-5 rounded-lg"
-              role="button"
-              target="_blank"
-              >Read the Full Insight</NuxtLink
-            >
+            />
           </div>
         </div>
       </div>
@@ -67,7 +64,7 @@
   <!--Event information-->
   <div class="grid grid-cols-1 border-b-2">
     <div class="py-5">
-      <UiDiamond text="Insight Information" />
+      <UiTitleIcon text="Insight Information" />
     </div>
     <div>
       <p>
@@ -125,21 +122,6 @@ export default {
         file;
 
       return imageURL;
-    },
-
-    splitJoin(str) {
-      let badge = "";
-      const list = str.split(", ");
-
-      list.forEach(function (tag) {
-        badge =
-          badge +
-          '<span class="block float-left font-roboto-condensed lowercase text-sm rounded-full text-white bg-fs-blue px-3 py-1 mr-1 my-1">' +
-          tag +
-          "</span>";
-      });
-
-      return badge;
     },
   },
 

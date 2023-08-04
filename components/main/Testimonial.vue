@@ -3,7 +3,7 @@
     <div class="mx-auto">
       <div class="grid grid-cols-1 border-b-2 pb-10">
         <div>
-          <UiDiamond text="What Members are Saying?" />
+          <UiTitleIcon text="What Members are Saying?" />
         </div>
         <div>
           <h2 class="text-2xl font-bold uppercase py-5">

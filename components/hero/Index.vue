@@ -3,10 +3,10 @@
     class="container mx-auto relative block top-0 z-10 overflow-hidden mt-0 mb-0 bg-fs-brown bg-cover lg:py-16 sm:py-4 rounded-b-lg"
     :style="bgImage"
   >
-    <img
+    <NuxtImg
       role="img"
       class="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none"
-      src="~@/assets/svg/x-background.svg"
+      src="/images/svg/x-background.svg"
       loading="lazy"
       aria-label="background icon"
     />
@@ -16,7 +16,7 @@
         v-html="pageTitle"
       ></h1>
       <div v-if="pageSubTitle != ''">
-        <UiDiamond :text="pageSubTitle" type="h2" color="text-white" />
+        <UiTitleIcon :text="pageSubTitle" type="h2" color="text-white" />
         <div
           class="mx-auto text-white lg:text-xl sm:text-lg font-roboto-condensed py-6 px-2"
           v-if="pageMessage != ''"
@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="pt-6" v-if="pageSubTitle2 != ''">
-        <UiDiamond :text="pageSubTitle2" type="h2" color="text-white" />
+        <UiTitleIcon :text="pageSubTitle2" type="h2" color="text-white" />
         <div
           class="mx-auto text-white lg:text-xl sm:text-lg font-roboto-condensed py-6 px-2"
           v-if="pageMessage2 != ''"
@@ -139,16 +139,9 @@ export default {
     return {
       bgImage: {
         "background-size": "cover",
-        "background-image": `url(${this.getImage(this.pageImage)})`,
+        "background-image": `url(${this.pageImage})`,
       },
     };
-  },
-  methods: {
-    getImage(pageImage) {
-      if (pageImage != "") {
-        return require(`@/assets/banner/${pageImage}.jpg`);
-      }
-    },
   },
 };
 </script>

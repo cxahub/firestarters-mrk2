@@ -1,27 +1,37 @@
 <template>
-  <NavHeader />
   <HeroPage
     :pageImage="pageImage"
     :pageTitle="pageTitle"
     :pageSubTitle="pageSubTitle"
     :pageMessage="pageMessage"
   />
-  <div class="container mx-auto">
+  <main class="container mx-auto">
     <div class="grid grid-cols-1">
       <div class="py-10">
-        <UiDiamond text="Title" />
+        <UiTitleIcon text="Title" />
       </div>
       <div>Text</div>
     </div>
-  </div>
-  <NavFooter />
+  </main>
 </template>
 
 <script>
-//Import the banner image.
-import pageImage from "~/assets/banner/page-banner-insights.jpg";
+//Import image(s).
+import pageImage from "/images/banner/page-banner-insights.jpg";
 
 export default {
+  setup() {
+    useHead({
+      title: "Insights - Firestarters",
+      meta: [
+        {
+          name: "description",
+          content:
+            "Members are welcome at anytime to jump on the site and review content, best practices, and engage with other members.",
+        },
+      ],
+    });
+  },
   data() {
     return {
       pageImage: pageImage,

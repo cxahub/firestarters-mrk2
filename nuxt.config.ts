@@ -1,8 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-fonts"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-fonts", "@nuxt/image-edge"],
   buildModules: ["@nuxtjs/dotenv", "@nuxtjs/moment"],
-  css: ["@/assets/styles/main.css"],
+  css: ["~/assets/styles/main.css"],
   runtimeConfig: {
     public: {
       VUE_APP_BASE_PATH: process.env.VUE_APP_BASE_PATH,
@@ -85,8 +85,12 @@ export default defineNuxtConfig({
 
   googleFonts: {
     families: {
-      Roboto: true,
-      "Roboto+Condensed": true,
+      Roboto: {
+        wght: [100, 300, 700, 800, 900],
+      },
+      "Roboto+Condensed": {
+        wght: [100, 300, 700, 800, 900],
+      },
     },
   },
 

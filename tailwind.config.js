@@ -3,13 +3,6 @@ const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   content: ["./pages/**/*.{html,js}", "./components/**/*.{html,js}"],
-  plugins: [
-    plugin(function ({ addBase, config }) {
-      addBase({
-        body: { minHeight: config("theme.min-h-full") },
-      });
-    }),
-  ],
   theme: {
     screens: {
       sm: "360px",
@@ -41,10 +34,7 @@ module.exports = {
         "fs-yellow-light": "#fac761",
         "fs-red": "#eb1f04",
         "fs-blue": "#003049",
-      },
-      backgroundImage: {
-        "diamond-icon":
-          "url('~@/assets/svg/diamond-icon.svg'); background-size: 1rem; background-repeat: no-repeat;",
+        "fs-light-gray": "#eceaea",
       },
       backgroundSize: {
         "1r": "1rem",

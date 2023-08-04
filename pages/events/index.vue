@@ -1,27 +1,37 @@
 <template>
-  <NavHeader />
   <HeroPage
     :pageImage="pageImage"
     :pageTitle="pageTitle"
     :pageSubTitle="pageSubTitle"
     :pageMessage="pageMessage"
   />
-  <div class="container mx-auto">
+  <main class="container mx-auto">
     <div class="grid grid-cols-1">
       <div class="py-10">
-        <UiDiamond text="Title" />
+        <UiTitleIcon text="Title" />
       </div>
       <div>Text</div>
     </div>
-  </div>
-  <NavFooter />
+  </main>
 </template>
 
 <script>
-//Import the banner image.
-import pageImage from "~/assets/banner/page-banner-events.jpg";
+//Import image(s).
+import pageImage from "/images/banner/page-banner-events.jpg";
 
 export default {
+  setup() {
+    useHead({
+      title: "Events - Firestarters",
+      meta: [
+        {
+          name: "description",
+          content:
+            "Members of the community will have an opportunity to connect with each other on various CX topics and build a network of like-minded colleagues to collectively define what a great customer experience can be.",
+        },
+      ],
+    });
+  },
   data() {
     return {
       pageImage: pageImage,

@@ -1,18 +1,16 @@
 <template>
   <div v-for="document in documents" :key="document.id">
-    <NuxtLink
-      :to="
+    <UiButton
+      text="Get Session Content"
+      :path="
         repositoryPath +
         '/document/' +
         document.doct_path +
         '/' +
         document.doc_file
       "
-      class="block float-left bg-fs-yellow hover:bg-fs-yellow-light font-bold uppercase py-4 px-4 my-5 rounded-lg"
-      role="button"
       target="_blank"
-      >Get Session Content</NuxtLink
-    >
+    />
   </div>
 </template>
 

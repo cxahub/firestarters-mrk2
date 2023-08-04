@@ -1,7 +1,7 @@
 <template>
   <!--Social user-->
   <div class="relative block w-[min-content_lfr] float-left py-2">
-    <img
+    <NuxtImg
       role="img"
       loading="lazy"
       :src="getImage(imgtPath, imgFile)"

@@ -1,16 +1,15 @@
 <template>
   <div class="grid grid-cols-1">
     <div class="py-2" v-if="events.length !== 0">
-      <UiDiamond text="Our Latest Events" />
+      <UiTitleIcon text="Our Latest Events" />
     </div>
     <div>
       <div v-for="(event, index) in events" :key="event.id">
         <div v-if="index == 0">
           <NuxtLink :to="`/events/${event.id}/${event.e_canonical_title}`">
-            <img
-              role="img"
-              loading="lazy"
+            <NuxtImg
               :src="getImage(event.imgt_path, event.img_file)"
+              loading="lazy"
               class="block rounded-lg w-full"
               aria-label="event image"
             />
@@ -18,11 +17,13 @@
 
           <!--Event title-->
           <h1 class="font-black uppercase text-5xl py-4">
-            {{ event.e_title }}
+            <NuxtLink :to="`/events/${event.id}/${event.e_canonical_title}`">{{
+              event.e_title
+            }}</NuxtLink>
           </h1>
 
           <!--Event tags-->
-          <div v-html="splitJoin(event.e_tag)"></div>
+          <UiTags :tags="event.e_tag" />
 
           <!--Event description-->
           <div class="block float-left py-10">
@@ -42,13 +43,10 @@
           </div>
 
           <div class="block float-left w-full">
-            <NuxtLink
-              :to="'/events/' + event.id + '/' + event.e_canonical_title"
-              class="block float-left bg-fs-yellow hover:bg-fs-yellow-light font-bold uppercase py-4 px-4 my-5 rounded-lg"
-              role="button"
-              target="_blank"
-              >Event Details</NuxtLink
-            >
+            <UiButton
+              text="Event Details"
+              :path="'/events/' + event.id + '/' + event.e_canonical_title"
+            />
           </div>
 
           <!--Event document
@@ -63,7 +61,7 @@
   <!--Event information-->
   <div class="grid grid-cols-1 border-b-2">
     <div class="py-2">
-      <UiDiamond text="Event Information" />
+      <UiTitleIcon text="Event Information" />
     </div>
     <div>
       <p>
@@ -71,12 +69,7 @@
         other on various CX topics and build a network of like-minded colleagues
         to collectively define what a great customer experience can be.
       </p>
-      <NuxtLink
-        to="/events"
-        class="block float-left bg-white border border-fs-brown hover:bg-fs-brown hover:text-white font-bold uppercase py-4 px-4 my-5 rounded-lg"
-        role="button"
-        >More Events</NuxtLink
-      >
+      <UiButton text="More Event" path="/events" type="secondary" />
     </div>
   </div>
 </template>
@@ -121,21 +114,6 @@ export default {
         file;
 
       return imageURL;
-    },
-
-    splitJoin(str) {
-      let badge = "";
-      const list = str.split(", ");
-
-      list.forEach(function (tag) {
-        badge =
-          badge +
-          '<span class="block float-left font-roboto-condensed lowercase text-sm rounded-full text-white bg-fs-blue px-3 py-1 mr-1 my-1">' +
-          tag +
-          "</span>";
-      });
-
-      return badge;
     },
   },
 
