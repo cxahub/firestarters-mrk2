@@ -98,30 +98,35 @@
             </h6>
             <NuxtLink
               to="https://www.sap.com/about/legal/privacy.html"
+              target="_blank"
               class="block text-md text-fs-yellow hover:text-white"
               activeClass="underline decoration-solid"
               >Privacy Policy</NuxtLink
             >
             <NuxtLink
               to="https://www.sap.com/corporate/en/legal/terms-of-use.html"
+              target="_blank"
               class="block text-md text-fs-yellow hover:text-white"
               activeClass="underline decoration-solid"
               >Terms of Use</NuxtLink
             >
             <NuxtLink
               to="https://www.sap.com/about/legal/impressum.html"
+              target="_blank"
               class="block text-md text-fs-yellow hover:text-white"
               activeClass="underline decoration-solid"
               >Legal Disclosure</NuxtLink
             >
             <NuxtLink
               to="https://www.sap.com/about/legal/copyright.html"
+              target="_blank"
               class="block text-md text-fs-yellow hover:text-white"
               activeClass="underline decoration-solid"
               >Copyright</NuxtLink
             >
             <NuxtLink
               to="https://www.sap.com/about/legal/trademark.html"
+              target="_blank"
               class="block text-md text-fs-yellow hover:text-white"
               activeClass="underline decoration-solid"
               >Trademark</NuxtLink

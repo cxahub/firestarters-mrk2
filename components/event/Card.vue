@@ -14,13 +14,13 @@
           stay in the loop!
         </div>
         <div class="py-4">
-          <UiButton text="Register Now!" path="/register" />
+          <UiButton text="Register Now!" path="/register" size="small" />
         </div>
       </div>
       <div
         :class="
           events.length > 1
-            ? 'grid lg:grid-cols-2 sm:grid-cols-1 gap-8'
+            ? 'grid lg:grid-cols-2 sm:grid-cols-1 gap-12'
             : 'grid grid-cols-1'
         "
       >
@@ -68,6 +68,7 @@
                 <UiButton
                   text="Event Details"
                   :path="'/events/' + event.id + '/' + event.e_canonical_title"
+                  size="small"
                 />
                 <!--Event document-->
                 <div class="py-4">
@@ -75,7 +76,11 @@
                 </div>
               </div>
               <div v-if="event.e_url != '' && event.et_id == 4" class="py-4">
-                <UiButton text="Register for Course" :path="event.e_url" />
+                <UiButton
+                  text="Register for Course"
+                  :path="event.e_url"
+                  size="small"
+                />
               </div>
             </div>
           </div>

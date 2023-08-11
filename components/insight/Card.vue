@@ -1,19 +1,20 @@
 <template>
   <div class="grid grid-cols-1">
-    {{ industry }}
-    <div v-if="insights.length == 0">
+    <div v-if="insights.length == 0" class="py-4">
       <div>No results found, please modify your search.</div>
     </div>
     <div
       :class="
         insights.length > 1
-          ? 'grid lg:grid-cols-2 sm:grid-cols-1 gap-8'
+          ? 'grid lg:grid-cols-2 sm:grid-cols-1 gap-12'
           : 'grid grid-cols-1'
       "
     >
       <div class="col-span-2">
-        Total Insights by Industry:
-        <span class="text-fs-red">{{ insights.length - 1 }}</span>
+        <div class="py-4 font-bold">
+          Total Insights by Industry:
+          <span class="text-fs-red">{{ insights.length - 1 }}</span>
+        </div>
       </div>
       <div v-for="insight in insights" :key="insight.id">
         <div>
@@ -50,16 +51,20 @@
           </div>
 
           <div class="py-4">
-            <UiButton
-              text="Insight Details"
-              :path="
-                '/insights/' + insight.id + '/' + insight.c_canonical_title
-              "
-            />
+            <div class="block float-left py-4 pr-2">
+              <UiButton
+                text="Insight Details"
+                :path="
+                  '/insights/' + insight.id + '/' + insight.c_canonical_title
+                "
+                size="small"
+              />
+            </div>
             <!--Insight document-->
             <div class="py-4">
               <InsightDocument
                 :insightID="parseInt(insight.id)"
+                size="small"
               ></InsightDocument>
             </div>
           </div>

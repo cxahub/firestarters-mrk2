@@ -5,12 +5,12 @@
   <div v-else>
     <div
       v-if="events.length != 0"
-      class="grid lg:grid-cols-2 sm:grid-cols-1 gap-8"
+      class="grid lg:grid-cols-2 sm:grid-cols-1 gap-12"
     >
       <div class="lg:col-span-2 pt-4">
         <UiTitleIcon :text="etID == 2 ? 'Past Events' : 'Past Courses'" />
       </div>
-      <div v-for="(event, index) in events" :key="event.id">
+      <div v-for="event in events" :key="event.id">
         <NuxtLink :to="`/events/${event.id}/${event.e_canonical_title}`">
           <NuxtImg
             :src="getImage(event.imgt_path, event.img_file)"
@@ -53,11 +53,12 @@
               text="Event Details"
               class="mr-4"
               :path="'/events/' + event.id + '/' + event.e_canonical_title"
+              size="small"
             />
           </div>
           <!--Event document-->
           <div class="block py-4">
-            <EventDocument :eventID="parseInt(event.id)" />
+            <EventDocument :eventID="parseInt(event.id)" size="small" />
           </div>
         </div>
       </div>

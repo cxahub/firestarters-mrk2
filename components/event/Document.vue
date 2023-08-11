@@ -15,6 +15,7 @@
         "
         target="_blank"
         type="secondary"
+        size="small"
       />
     </div>
   </div>
@@ -24,6 +25,7 @@
 export default {
   props: {
     eventID: { type: Number },
+    size: { type: String },
   },
 
   setup(props) {

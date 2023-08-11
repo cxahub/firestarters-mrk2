@@ -1,9 +1,11 @@
 <template>
-  <NuxtImg
-    src="/images/svg/firestarters-icon.svg"
-    loading="lazy"
-    class="w-full"
-    aria-label="firestarters loader"
-  />
-  <div>Loading</div>
+  <div class="text-center">
+    <NuxtImg
+      src="/images/svg/firestarters-icon.svg"
+      loading="lazy"
+      class="w-8 mx-auto animate-bounce"
+      aria-label="firestarters loader"
+    />
+    <div class="animate-pulse">Loading</div>
+  </div>
 </template>
