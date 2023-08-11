@@ -1,34 +1,39 @@
 <template>
-  <div class="block float-left w-full mx-auto">
-    <div class="grid grid-cols-3">
-      <div class="col-span-3 pt-4">
-        <h1 class="text-3xl text-fs-yellow font-bold uppercase py-2">
-          Insight Stats
-        </h1>
-      </div>
-      <div
-        class="text-xl text-center text-white bg-fs-light-gray bg-opacity-20 border-r-2 py-2"
-      >
-        <span class="block text-5xl font-medium py-2">{{
-          analyticsPageView.length
-        }}</span>
-        Views
-      </div>
-      <div
-        class="text-xl text-center text-white bg-fs-light-gray bg-opacity-20 border-r-2 py-2"
-      >
-        <span class="block text-5xl font-medium py-2">{{
-          UserStats()[1]
-        }}</span>
-        Shares
-      </div>
-      <div
-        class="text-xl text-center text-white bg-fs-light-gray bg-opacity-20 py-2"
-      >
-        <span class="block text-5xl font-medium py-2">{{
-          UserStats()[0]
-        }}</span>
-        Likes
+  <div v-if="pending && pending2">
+    <UiLoader />
+  </div>
+  <div v-else>
+    <div class="block float-left w-full mx-auto">
+      <div class="grid grid-cols-3">
+        <div class="col-span-3 pt-4">
+          <h1 class="text-3xl text-fs-yellow font-bold uppercase py-2">
+            Insight Stats
+          </h1>
+        </div>
+        <div
+          class="text-xl text-center text-white bg-fs-light-gray bg-opacity-20 border-r-2 py-2"
+        >
+          <span class="block text-5xl font-medium py-2">{{
+            analyticsPageView.length
+          }}</span>
+          Views
+        </div>
+        <div
+          class="text-xl text-center text-white bg-fs-light-gray bg-opacity-20 border-r-2 py-2"
+        >
+          <span class="block text-5xl font-medium py-2">{{
+            UserStats()[1]
+          }}</span>
+          Shares
+        </div>
+        <div
+          class="text-xl text-center text-white bg-fs-light-gray bg-opacity-20 py-2"
+        >
+          <span class="block text-5xl font-medium py-2">{{
+            UserStats()[0]
+          }}</span>
+          Likes
+        </div>
       </div>
     </div>
   </div>
@@ -47,8 +52,8 @@ export default {
     //Get runtime config.
     const config = useRuntimeConfig();
 
-    //Fetch analytics data.
-    const { data: analyticsPageView } = useFetch(
+    //Fetch data.
+    const { pending, data: analyticsPageView } = useLazyFetch(
       config.public.VUE_APP_API_URL +
         "/" +
         config.public.VUE_APP_API_ANALYTICS_PAGE_VIEW_ROUTE,
@@ -59,8 +64,8 @@ export default {
       }
     );
 
-    //Fetch user comment stats data.
-    const { data: userCommentStats } = useFetch(
+    //Fetch data.
+    const { pending: pending2, data: userCommentStats } = useLazyFetch(
       config.public.VUE_APP_API_URL +
         "/" +
         config.public.VUE_APP_API_USER_COMMENT_ROUTE,
@@ -88,6 +93,8 @@ export default {
       analyticsPageView,
       userCommentStats,
       UserStats,
+      pending,
+      pending2,
     };
   },
 };

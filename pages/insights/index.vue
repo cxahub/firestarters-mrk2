@@ -5,7 +5,7 @@
     :pageSubTitle="pageSubTitle"
     :pageMessage="pageMessage"
   />
-  <main class="container mx-auto">
+  <main class="container mx-auto py-8">
     <div class="grid grid-cols-1 py-4">
       <InsightSearch v-model:kw="kw" v-model:industry="industry" />
       <InsightMain v-if="kw == '' && industry == 0" />

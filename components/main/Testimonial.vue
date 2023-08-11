@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto mt-0 mb-0 py-8">
+  <div class="container mx-auto">
     <div class="mx-auto">
       <div class="grid grid-cols-1 border-b-2 pb-10">
         <div>

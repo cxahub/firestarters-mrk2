@@ -21,7 +21,7 @@
           <!--Industry relationship-->
           <InsightIndustryRel
             v-if="pageIndustry != ''"
-            :insightid="parseInt(pageID)"
+            :insightID="parseInt(pageID)"
             color="true"
           />
 

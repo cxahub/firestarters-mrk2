@@ -1,39 +1,44 @@
 <template>
-  <div v-for="document in documents" :key="document.id">
-    <UiButton
-      text="Get Article (PDF)"
-      :path="
-        repositoryPath +
-        '/document/' +
-        document.doct_path +
-        '/' +
-        document.doc_file
-      "
-      target="_blank"
-      type="secondary"
-    />
+  <div v-if="pending">
+    <UiLoader />
+  </div>
+  <div v-else>
+    <div v-for="document in documents" :key="document.id">
+      <UiButton
+        text="Get Article (PDF)"
+        :path="
+          repositoryPath +
+          '/document/' +
+          document.doct_path +
+          '/' +
+          document.doc_file
+        "
+        target="_blank"
+        type="secondary"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    insightid: { type: Number },
+    insightID: { type: Number },
   },
 
   setup(props) {
     //Get runtime config.
     const config = useRuntimeConfig();
 
-    //Fetch event data.
-    const { data: documents } = useFetch(
+    //Fetch data.
+    const { pending, data: documents } = useLazyFetch(
       config.public.VUE_APP_API_URL +
         "/" +
         config.public.VUE_APP_API_CONTENT_ROUTE +
         "-document-rel",
       {
         query: {
-          c_id: props.insightid,
+          c_id: parseInt(props.insightID),
           status_id: 1,
         },
       }
@@ -41,6 +46,7 @@ export default {
     return {
       config,
       documents,
+      pending,
     };
   },
 

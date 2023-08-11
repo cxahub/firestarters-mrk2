@@ -5,10 +5,10 @@
     :pageSubTitle="pageSubTitle"
     :pageMessage="pageMessage"
   />
-  <main class="container mx-auto">
+  <main class="container mx-auto py-8">
     <div class="grid grid-cols-1 py-4">
-      <EventCard etID="2" />
-      <EventPastCard etID="2" />
+      <EventCard :etID="2" />
+      <EventPastCard :etID="2" />
     </div>
   </main>
 </template>

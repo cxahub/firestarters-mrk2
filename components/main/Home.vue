@@ -31,14 +31,14 @@ export default {
       pageSubTitle: "Who Are We?",
       pageMessage:
         "If you are responsible for business outcomes and driving growth for your organization - WE ARE YOU.",
-      pageLink: "Home",
+      pageLink: "/",
       pageLinkTitle: "Join Us",
       pageLinkType: "modal",
       pageLinkTarget: "#registerModal",
       pageSubTitle2: "Who Do We Do?",
       pageMessage2:
         "Each Firestarters member has ownership in our business community. We know the market is tough which is why our charter is to build and support each other through crowdsourced past learnings, thought leadership, expertise and strategy as you build your business.",
-      pageLink2: "About Us",
+      pageLink2: "/about",
       pageLinkTitle2: "About Us",
       pageLinkType2: "",
       pageLinkTarget2: "",

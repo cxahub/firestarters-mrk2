@@ -97,31 +97,31 @@
               Site Information
             </h6>
             <NuxtLink
-              to="/privacy"
+              to="https://www.sap.com/about/legal/privacy.html"
               class="block text-md text-fs-yellow hover:text-white"
               activeClass="underline decoration-solid"
               >Privacy Policy</NuxtLink
             >
             <NuxtLink
-              to="/terms"
+              to="https://www.sap.com/corporate/en/legal/terms-of-use.html"
               class="block text-md text-fs-yellow hover:text-white"
               activeClass="underline decoration-solid"
               >Terms of Use</NuxtLink
             >
             <NuxtLink
-              to="/legal"
+              to="https://www.sap.com/about/legal/impressum.html"
               class="block text-md text-fs-yellow hover:text-white"
               activeClass="underline decoration-solid"
               >Legal Disclosure</NuxtLink
             >
             <NuxtLink
-              to="/copyright"
+              to="https://www.sap.com/about/legal/copyright.html"
               class="block text-md text-fs-yellow hover:text-white"
               activeClass="underline decoration-solid"
               >Copyright</NuxtLink
             >
             <NuxtLink
-              to="/trademark"
+              to="https://www.sap.com/about/legal/trademark.html"
               class="block text-md text-fs-yellow hover:text-white"
               activeClass="underline decoration-solid"
               >Trademark</NuxtLink

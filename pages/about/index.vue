@@ -5,13 +5,10 @@
     :pageSubTitle="pageSubTitle"
     :pageMessage="pageMessage"
   />
-  <main class="container mx-auto">
+  <main class="container mx-auto py-8">
     <div class="grid grid-cols-1 py-4">
       <div class="py-4">
-        <UiTitleIcon
-          text="What is the Firestarters Community?"
-          :icon="titleIcon"
-        />
+        <UiTitleIcon text="What is the Firestarters Community?" />
         <div class="py-2">
           It is a global gathering of people that have Customer Experience in
           their DNA and want to exchange together in a safe and open
@@ -21,15 +18,20 @@
         </div>
       </div>
 
-      <div v-for="video in videos" :key="video.id">
-        <VideoPlayer
-          :videoSrc="video.vst_url + video.v_source_id"
-          :videoTitle="video.c_title"
-        />
+      <div v-if="pending">
+        <UiLoader />
+      </div>
+      <div v-else>
+        <div v-for="video in videos" :key="video.id">
+          <VideoPlayer
+            :videoSrc="video.vst_url + video.v_source_id"
+            :videoTitle="video.c_title"
+          />
+        </div>
       </div>
 
       <div class="py-4">
-        <UiTitleIcon text="Who is part of this community?" :icon="titleIcon" />
+        <UiTitleIcon text="Who is part of this community?" />
         <div class="py-2">
           Business stakeholders across different industries and regions all
           around the world.
@@ -133,8 +135,8 @@ export default {
       return moment(value).format(config.public.VUE_APP_DATEFORMAT);
     }
 
-    //Fetch event data.
-    const { data: videos } = useFetch(
+    //Fetch data.
+    const { pending, data: videos } = useLazyFetch(
       config.public.VUE_APP_API_URL +
         "/" +
         config.public.VUE_APP_API_CONTENT_VIDEO_REL_ROUTE,
@@ -149,6 +151,7 @@ export default {
     return {
       config,
       videos,
+      pending,
     };
   },
 

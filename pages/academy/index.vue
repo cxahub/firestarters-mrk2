@@ -5,9 +5,9 @@
     :pageSubTitle="pageSubTitle"
     :pageMessage="pageMessage"
   />
-  <main class="container mx-auto">
+  <main class="container mx-auto py-8">
     <div class="grid grid-cols-1 py-4">
-      <div class="py-10">
+      <div>
         <NuxtImg
           role="img"
           class="w-1/3"
@@ -89,8 +89,8 @@
         </ol>
       </div>
     </div>
-    <EventCard etID="4" />
-    <EventPastCard etID="4" />
+    <EventCard :etID="4" />
+    <EventPastCard :etID="4" />
   </main>
 </template>
 

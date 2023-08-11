@@ -1,52 +1,59 @@
 <template>
-  <!--Social user-->
-  <div class="relative block w-[min-content_lfr] float-left py-2">
-    <NuxtImg
-      role="img"
-      loading="lazy"
-      :src="getImage(imgtPath, imgFile)"
-      class="relative rounded-full w-20 z-[4]"
-      aria-label="insight author image"
-    />
-
-    <span v-for="ufr in userFieldRel" :key="ufr.id">
-      <a
-        :href="ufr.ufr_value"
-        target="_blank"
-        :class="imgtPath != null ? 'linkedin' : 'linkedin-no-photo'"
-      >
-        <svg
-          aria-hidden="true"
-          focusable="false"
-          viewBox="0 0 48 48"
-          width="24"
-          height="24"
-        >
-          <path
-            d="M0 0v18.293l6.415 6.414L0 31.122V48h48V0z"
-            fill="#0095ff"
-          ></path>
-          <path
-            d="M20.501 34.702h4.724v-7.935c0-.425.03-.85.155-1.153.342-.848 1.119-1.727 2.424-1.727 1.709 0 2.393 1.303 2.393 3.213v7.602h4.723v-8.148c0-4.364-2.33-6.395-5.438-6.395-2.549 0-3.667 1.424-4.289 2.394h.032v-2.06H20.5c.062 1.333 0 14.21 0 14.21zm-2.614 0v-14.21h-4.723v14.21zm-2.362-16.15c1.648 0 2.673-1.091 2.673-2.455-.03-1.394-1.025-2.455-2.641-2.455s-2.672 1.06-2.672 2.455c0 1.364 1.025 2.455 2.61 2.455h.03z"
-            fill="#fff"
-          ></path>
-        </svg>
-      </a>
-    </span>
+  <div v-if="pending">
+    <UiLoader />
   </div>
-  <div
-    class="block float-left mt-3 ml-5"
-    :class="color ? 'text-white' : 'text-black'"
-  >
-    <div v-if="authorFirstName != ''">
-      By:
-      <span class="font-bold">{{ authorFirstName }} {{ authorLastName }}</span>
+  <div v-else>
+    <!--Social user-->
+    <div class="relative block w-[min-content_lfr] float-left py-2">
+      <NuxtImg
+        role="img"
+        loading="lazy"
+        :src="getImage(imgtPath, imgFile)"
+        class="relative rounded-full w-20 z-[4]"
+        aria-label="insight author image"
+      />
+
+      <span v-for="ufr in userFieldRel" :key="ufr.id">
+        <a
+          :href="ufr.ufr_value"
+          target="_blank"
+          :class="imgtPath != null ? 'linkedin' : 'linkedin-no-photo'"
+        >
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            viewBox="0 0 48 48"
+            width="24"
+            height="24"
+          >
+            <path
+              d="M0 0v18.293l6.415 6.414L0 31.122V48h48V0z"
+              fill="#0095ff"
+            ></path>
+            <path
+              d="M20.501 34.702h4.724v-7.935c0-.425.03-.85.155-1.153.342-.848 1.119-1.727 2.424-1.727 1.709 0 2.393 1.303 2.393 3.213v7.602h4.723v-8.148c0-4.364-2.33-6.395-5.438-6.395-2.549 0-3.667 1.424-4.289 2.394h.032v-2.06H20.5c.062 1.333 0 14.21 0 14.21zm-2.614 0v-14.21h-4.723v14.21zm-2.362-16.15c1.648 0 2.673-1.091 2.673-2.455-.03-1.394-1.025-2.455-2.641-2.455s-2.672 1.06-2.672 2.455c0 1.364 1.025 2.455 2.61 2.455h.03z"
+              fill="#fff"
+            ></path>
+          </svg>
+        </a>
+      </span>
     </div>
-    <div v-if="datePosted != ''">
-      Posted: <span class="font-bold">{{ dateFormat(datePosted) }}</span>
-    </div>
-    <div v-if="readTime != ''">
-      Read Time: <span class="font-bold">{{ readTime }}</span>
+    <div
+      class="block float-left mt-3 ml-5"
+      :class="color ? 'text-white' : 'text-black'"
+    >
+      <div v-if="authorFirstName != ''">
+        By:
+        <span class="font-bold"
+          >{{ authorFirstName }} {{ authorLastName }}</span
+        >
+      </div>
+      <div v-if="datePosted != ''">
+        Posted: <span class="font-bold">{{ dateFormat(datePosted) }}</span>
+      </div>
+      <div v-if="readTime != ''">
+        Read Time: <span class="font-bold">{{ readTime }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -71,8 +78,8 @@ export default {
     //Get runtime config.
     const config = useRuntimeConfig();
 
-    //Fetch event data.
-    const { data: userFieldRel } = useFetch(
+    //Fetch data.
+    const { pending, data: userFieldRel } = useLazyFetch(
       config.public.VUE_APP_API_URL +
         "/" +
         config.public.VUE_APP_API_USER_FIELD_REL_ROUTE +
@@ -83,6 +90,7 @@ export default {
     return {
       config,
       userFieldRel,
+      pending,
     };
   },
   methods: {

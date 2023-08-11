@@ -59,7 +59,7 @@
             <!--Insight document-->
             <div class="py-4">
               <InsightDocument
-                :insightid="parseInt(insight.id)"
+                :insightID="parseInt(insight.id)"
               ></InsightDocument>
             </div>
           </div>
@@ -93,23 +93,17 @@ export default {
     const kw = ref(props.kw);
     const industry = ref(props.industry);
 
-    const {
-      data: insights,
-      refresh,
-      error,
-    } = await useAsyncData(
+    const { data: insights } = await useAsyncData(
       "insights",
       () =>
-        $fetch(`/${config.public.VUE_APP_API_CONTENT_INDUSTRY_REL_ROUTE}`, {
+        $fetch(`/${config.public.VUE_APP_API_CONTENT_ROUTE}`, {
           method: "GET",
           baseURL: config.public.VUE_APP_API_URL,
           params: {
             c_date_gte: dateFormat(Date.now()),
-            c_data_exp: dateFormat(Date.now()),
+            c_date_exp: dateFormat(Date.now()),
             status_id: 1,
             order_by: "c_date_posted DESC",
-            kw: kw.value,
-            i_id: industry.value,
           },
         }),
       {

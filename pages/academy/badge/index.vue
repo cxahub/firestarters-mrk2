@@ -5,7 +5,7 @@
     :pageSubTitle="pageSubTitle"
     :pageMessage="pageMessage"
   />
-  <main class="container mx-auto">
+  <main class="container mx-auto py-8">
     <div class="grid grid-cols-1">
       <div class="py-10">
         <UiTitleIcon text="Title" />

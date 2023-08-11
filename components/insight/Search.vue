@@ -1,36 +1,41 @@
 <template>
-  <div class="grid grid-cols-1 py-4">
-    <div class="py-2">
-      <UiTitleIcon text="Search Insights" />
-    </div>
+  <div v-if="pending">
+    <UiLoader />
   </div>
-  <div class="grid lg:grid-cols-2 sm:grid-cols-2 pb-8">
-    <div>
-      <input
-        type="search"
-        class="form-input rounded"
-        v-model="kw"
-        aria-describedby="kwHelp"
-        placeholder="Search"
-        @input="Update($event.target.value)"
-      />
+  <div v-else>
+    <div class="grid grid-cols-1 py-4">
+      <div class="py-2">
+        <UiTitleIcon text="Search Insights" />
+      </div>
     </div>
-    <div>
-      <select
-        class="form-select rounded"
-        v-model="industry"
-        aria-describedby="industryHelp"
-        @change="$emit('update:industry', parseInt($event.target.value))"
-      >
-        <option value="0">{{ industrySelected }}</option>
-        <option
-          v-for="industry in industries"
-          :key="industry.id"
-          :value="industry.id"
+    <div class="grid lg:grid-cols-2 sm:grid-cols-2 pb-8">
+      <div>
+        <input
+          type="search"
+          class="form-input rounded"
+          v-model="kw"
+          aria-describedby="kwHelp"
+          placeholder="Search"
+          @input="Update($event.target.value)"
+        />
+      </div>
+      <div>
+        <select
+          class="form-select rounded"
+          v-model="industry"
+          aria-describedby="industryHelp"
+          @change="$emit('update:industry', parseInt($event.target.value))"
         >
-          {{ industry.i_name }}
-        </option>
-      </select>
+          <option value="0">{{ industrySelected }}</option>
+          <option
+            v-for="industry in industries"
+            :key="industry.id"
+            :value="industry.id"
+          >
+            {{ industry.i_name }}
+          </option>
+        </select>
+      </div>
     </div>
   </div>
 </template>
@@ -51,8 +56,8 @@ export default {
       emit("change", event);
     }
 
-    //Fetch event data.
-    const { data: industries } = useFetch(
+    //Fetch data.
+    const { pending, data: industries } = useLazyFetch(
       config.public.VUE_APP_API_URL +
         "/" +
         config.public.VUE_APP_API_INDUSTRY_ROUTE,
@@ -63,7 +68,7 @@ export default {
       }
     );
 
-    return { industries, industry, kw };
+    return { industries, industry, kw, pending };
   },
 
   data() {
