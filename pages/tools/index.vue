@@ -6,7 +6,7 @@
     :pageMessage="pageMessage"
   />
   <main class="container mx-auto">
-    <div class="grid grid-cols-1">
+    <div class="grid grid-cols-1 py-4">
       <div class="py-4">
         <UiTitleIcon
           text="Benefits Calculators"

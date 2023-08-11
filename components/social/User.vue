@@ -34,7 +34,10 @@
       </a>
     </span>
   </div>
-  <div class="block float-left mt-3 ml-5">
+  <div
+    class="block float-left mt-3 ml-5"
+    :class="color ? 'text-white' : 'text-black'"
+  >
     <div v-if="authorFirstName != ''">
       By:
       <span class="font-bold">{{ authorFirstName }} {{ authorLastName }}</span>
@@ -61,6 +64,7 @@ export default {
     authorLastName: { type: String, default: "" },
     datePosted: { type: String, default: "" },
     readTime: { type: String, default: "" },
+    color: { type: Boolean },
   },
 
   setup(props) {

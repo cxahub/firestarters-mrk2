@@ -1,6 +1,6 @@
 <template>
   <div class="grid grid-cols-1">
-    <div class="py-2">
+    <div class="pt-4">
       <UiTitleIcon :text="etID == 2 ? 'Upcoming Events' : 'Upcoming Courses'" />
     </div>
     <div v-if="events.length == 0">
@@ -64,7 +64,7 @@
               />
               <!--Event document-->
               <div class="py-4">
-                <EventDocument :eventid="parseInt(event.id)"></EventDocument>
+                <EventDocument :eventid="parseInt(event.id)" />
               </div>
             </div>
             <div v-if="event.e_url != '' && event.et_id == 4">
@@ -104,7 +104,7 @@ export default {
         config.public.VUE_APP_API_EVENT_ROUTE,
       {
         query: {
-          et_id: props.etid,
+          et_id: props.etID,
           e_date_gte: dateFormat(Date.now()),
           e_data_exp: dateFormat(Date.now()),
           status_id: 1,

@@ -1,9 +1,14 @@
 <template>
   <!--Insight industry relationship-->
   <div class="block w-full float-left py-2">
-    <div class="block float-left pr-1">Industry(s):</div>
     <div
-      class="font-bold"
+      class="block float-left pr-1"
+      :class="color ? 'text-white' : 'text-black'"
+    >
+      Industry(s):
+    </div>
+    <div
+      class="block float-left max-w-max font-bold"
       :class="color ? 'text-fs-yellow' : 'text-black'"
       v-for="(cir, index) in insightsIndustryRel"
       :key="cir.c_id"

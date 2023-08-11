@@ -6,13 +6,13 @@
     :pageMessage="pageMessage"
   />
   <main class="container mx-auto">
-    <div class="grid grid-cols-1">
+    <div class="grid grid-cols-1 py-4">
       <div class="py-4">
         <UiTitleIcon
           text="What is the Firestarters Community?"
           :icon="titleIcon"
         />
-        <div class="px-12 py-2">
+        <div class="py-2">
           It is a global gathering of people that have Customer Experience in
           their DNA and want to exchange together in a safe and open
           environment. Think about a group of friends & colleagues that share a
@@ -30,7 +30,7 @@
 
       <div class="py-4">
         <UiTitleIcon text="Who is part of this community?" :icon="titleIcon" />
-        <div class="px-12 py-2">
+        <div class="py-2">
           Business stakeholders across different industries and regions all
           around the world.
         </div>
@@ -38,7 +38,7 @@
 
       <div class="py-4">
         <UiTitleIcon text="Where does it take place?" />
-        <div class="px-16 py-2">
+        <div class="px-8 py-2">
           <ul class="list-disc list-outside">
             <li>
               Members are welcome at anytime to jump on the site and review
@@ -57,7 +57,7 @@
 
       <div class="py-4">
         <UiTitleIcon text="Who is part of this community?" />
-        <div class="px-12 py-2">
+        <div class="py-2">
           Business stakeholders across different industries and regions all
           around the world.
         </div>
@@ -65,7 +65,7 @@
 
       <div class="py-4">
         <UiTitleIcon text="Your Benefits" />
-        <div class="px-16 py-2">
+        <div class="px-8 py-2">
           <ul class="list-disc list-outside">
             <li>
               <span class="font-bold">Exchange and learn</span> from business
@@ -93,14 +93,14 @@
         </div>
       </div>
     </div>
-    <div class="grid grid-cols-2">
-      <div class="col-span-2 py-4">
+    <div class="grid lg:grid-cols-2 sm:grid-cols-1 gap-8">
+      <div class="lg:col-span-2">
         <UiTitleIcon text="Discover our online self-assist tools" />
       </div>
-      <div class="px-12 py-2">
+      <div class="py-2">
         <FlashCard />
       </div>
-      <div class="px-12 py-2">
+      <div class="py-2">
         <BenefitsCard />
       </div>
     </div>

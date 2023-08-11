@@ -6,11 +6,9 @@
     :pageMessage="pageMessage"
   />
   <main class="container mx-auto">
-    <div class="grid grid-cols-1">
-      <div class="py-10">
-        <UiTitleIcon text="Title" />
-      </div>
-      <div>Text</div>
+    <div class="grid grid-cols-1 py-4">
+      <EventCard etID="2" />
+      <EventPastCard etID="2" />
     </div>
   </main>
 </template>
@@ -35,9 +33,11 @@ export default {
   data() {
     return {
       pageImage: pageImage,
-      pageTitle: "XXX <span class='text-fs-yellow'>XXX</span>",
-      pageSubTitle: "XXX",
-      pageMessage: "XXX",
+      pageTitle:
+        "Discover our Virtual & <span class='text-fs-yellow'>Live Events</span>",
+      pageSubTitle: "Why Join Us Live?",
+      pageMessage:
+        "Members of the community will have an opportunity to connect with each other on various CX topics and build a network of like-minded colleagues to collectively define what a great customer experience can be.",
     };
   },
 };

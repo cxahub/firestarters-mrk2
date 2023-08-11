@@ -10,6 +10,7 @@
         document.doc_file
       "
       target="_blank"
+      type="secondary"
     />
   </div>
 </template>

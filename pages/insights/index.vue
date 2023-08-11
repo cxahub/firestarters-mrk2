@@ -6,11 +6,10 @@
     :pageMessage="pageMessage"
   />
   <main class="container mx-auto">
-    <div class="grid grid-cols-1">
-      <div class="py-10">
-        <UiTitleIcon text="Title" />
-      </div>
-      <div>Text</div>
+    <div class="grid grid-cols-1 py-4">
+      <InsightSearch v-model:kw="kw" v-model:industry="industry" />
+      <InsightMain v-if="kw == '' && industry == 0" />
+      <InsightCard :kw="kw" :industry="industry" />
     </div>
   </main>
 </template>
@@ -35,9 +34,13 @@ export default {
   data() {
     return {
       pageImage: pageImage,
-      pageTitle: "XXX <span class='text-fs-yellow'>XXX</span>",
-      pageSubTitle: "XXX",
-      pageMessage: "XXX",
+      pageTitle:
+        "Discover Whats Happening Around <span class='text-fs-yellow'>You.</span>",
+      pageSubTitle: "Submit Your Insights",
+      pageMessage:
+        "Members are welcome at anytime to jump on the site and review content and (coming soon) submit your own articles, best practices, and engage with other members.",
+      kw: "",
+      industry: 0,
     };
   },
 };

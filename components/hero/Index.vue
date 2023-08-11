@@ -5,7 +5,7 @@
   >
     <NuxtImg
       role="img"
-      class="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none"
+      class="absolute top-0 left-0 right-0 w-full z-0"
       src="/images/svg/x-background.svg"
       loading="lazy"
       aria-label="background icon"
@@ -138,6 +138,7 @@ export default {
   data() {
     return {
       bgImage: {
+        "background-position": "center center",
         "background-size": "cover",
         "background-image": `url(${this.pageImage})`,
       },

@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-fonts", "@nuxt/image-edge"],
   buildModules: ["@nuxtjs/dotenv", "@nuxtjs/moment"],
-  css: ["~/assets/styles/main.css"],
+  css: ["~/assets/styles/main.css", "~/assets/styles/article.css"],
   runtimeConfig: {
     public: {
       VUE_APP_BASE_PATH: process.env.VUE_APP_BASE_PATH,

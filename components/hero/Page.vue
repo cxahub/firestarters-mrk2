@@ -1,16 +1,16 @@
 <template>
   <div
-    class="container mx-auto relative block top-0 z-10 overflow-hidden mt-0 mb-0 bg-fs-brown bg-cover lg:py-16 sm:py-4 rounded-b-lg"
+    class="container mx-auto relative block top-0 overflow-hidden mt-0 mb-0 lg:py-16 sm:py-4 rounded-b-lg"
     :style="bgImage"
   >
     <NuxtImg
       role="img"
-      class="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none"
+      class="absolute top-0 left-0 right-0 w-full bg-fs-brown opacity-30"
       src="/images/svg/x-background.svg"
       loading="lazy"
       aria-label="background icon"
     />
-    <div class="mx-auto">
+    <div class="mx-auto relative">
       <h1
         class="text-roboto lg:text-7xl sm:text-5xl font-black text-white uppercase mt-24 mb-12"
         v-html="pageTitle"
@@ -55,6 +55,7 @@ export default {
   data() {
     return {
       bgImage: {
+        "background-position": "center center",
         "background-size": "cover",
         "background-image": `url(${this.pageImage})`,
       },
