@@ -14,7 +14,7 @@
           document.doc_file
         "
         target="_blank"
-        type="secondary"
+        format="secondary"
         :size="size"
       />
     </div>
@@ -34,9 +34,9 @@ export default {
 
     //Fetch data.
     const { pending, data: documents } = useLazyFetch(
-      config.public.VUE_APP_API_URL +
+      config.public.API_URL +
         "/" +
-        config.public.VUE_APP_API_CONTENT_ROUTE +
+        config.public.API_CONTENT_ROUTE +
         "-document-rel",
       {
         query: {
@@ -55,9 +55,9 @@ export default {
   data() {
     return {
       repositoryPath:
-        this.$config.public.VUE_APP_CDN_URL +
+        this.$config.public.CDN_URL +
         "/" +
-        this.$config.public.VUE_APP_CDN_REPOSITORY_PATH,
+        this.$config.public.CDN_REPOSITORY_PATH,
     };
   },
 };

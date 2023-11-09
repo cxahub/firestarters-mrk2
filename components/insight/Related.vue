@@ -17,7 +17,15 @@
             'background-image': `url(/images/bg/${adBGTexture.at(index)})`,
           }"
         >
+          <!--
           <NuxtImg
+            :src="getImage(insight.related_imgt_path, insight.related_img_file)"
+            loading="lazy"
+            class="relative mx-auto rounded-xl w-full"
+            aria-label="advisor image"
+          />
+        -->
+          <img
             :src="getImage(insight.related_imgt_path, insight.related_img_file)"
             loading="lazy"
             class="relative mx-auto rounded-xl w-full"
@@ -62,9 +70,7 @@ export default {
 
     //Fetch data.
     const { pending, data: insights } = useLazyFetch(
-      config.public.VUE_APP_API_URL +
-        "/" +
-        config.public.VUE_APP_API_CONTENT_RELATED_REL_ROUTE,
+      config.public.API_URL + "/" + config.public.API_CONTENT_RELATED_REL_ROUTE,
       {
         query: {
           c_id: props.c_id,
@@ -94,9 +100,9 @@ export default {
   methods: {
     getImage(path, file) {
       const imageURL =
-        this.config.public.VUE_APP_CDN_URL +
+        this.config.public.CDN_URL +
         "/" +
-        this.config.public.VUE_APP_CDN_REPOSITORY_PATH +
+        this.config.public.CDN_REPOSITORY_PATH +
         "/image/" +
         path +
         "/" +

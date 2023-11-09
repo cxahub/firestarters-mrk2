@@ -1,30 +1,52 @@
 <template>
-  <NuxtLink
-    :to="path"
-    class="max-w-max font-bold uppercase rounded-lg"
-    :class="
-      type === 'primary'
-        ? size === 'small'
-          ? primaryBtnSmall
-          : primaryBtn
-        : size === 'small'
-        ? secondaryBtnSmall
-        : secondaryBtn
-    "
-    role="button"
-    :target="target"
-    >{{ text }}</NuxtLink
-  >
+  <div v-if="role === 'link'">
+    <NuxtLink
+      :to="path"
+      class="max-w-max font-bold uppercase rounded-lg"
+      :class="
+        format === 'primary'
+          ? size === 'small'
+            ? primaryBtnSmall
+            : primaryBtn
+          : size === 'small'
+          ? secondaryBtnSmall
+          : secondaryBtn
+      "
+      :target="target"
+      >{{ text }}</NuxtLink
+    >
+  </div>
+  <div v-else>
+    <button
+      class="max-w-max font-bold uppercase rounded-lg"
+      :class="
+        format === 'primary'
+          ? size === 'small'
+            ? primaryBtnSmall
+            : primaryBtn
+          : size === 'small'
+          ? secondaryBtnSmall
+          : secondaryBtn
+      "
+      :type="type"
+      :disabled="disabled"
+    >
+      {{ text }}
+    </button>
+  </div>
 </template>
 
 <script>
 export default {
   props: {
+    role: { type: String, default: "link" },
     text: { type: String },
     path: { type: String },
-    type: { type: String, default: "primary" },
+    type: { type: String, default: "button" },
+    format: { type: String, default: "primary" },
     size: { type: String },
     target: { type: String, default: "_parent" },
+    disabled: { type: Boolean, default: false },
   },
 
   data() {

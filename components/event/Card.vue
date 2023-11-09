@@ -27,7 +27,15 @@
         <div v-for="event in events" :key="event.id">
           <div>
             <NuxtLink :to="`/events/${event.id}/${event.e_canonical_title}`">
+              <!--
               <NuxtImg
+                :src="getImage(event.imgt_path, event.img_file)"
+                loading="lazy"
+                class="block rounded-lg"
+                aria-label="event image"
+              />
+              -->
+              <img
                 :src="getImage(event.imgt_path, event.img_file)"
                 loading="lazy"
                 class="block rounded-lg"
@@ -107,14 +115,12 @@ export default {
     const config = useRuntimeConfig();
 
     function dateFormat(value) {
-      return moment(value).format(config.public.VUE_APP_DATEFORMAT);
+      return moment(value).format(config.public.DATEFORMAT);
     }
 
     //Fetch data.
     const { pending, data: events } = useLazyFetch(
-      config.public.VUE_APP_API_URL +
-        "/" +
-        config.public.VUE_APP_API_EVENT_ROUTE,
+      config.public.API_URL + "/" + config.public.API_EVENT_ROUTE,
       {
         query: {
           et_id: parseInt(props.etID),
@@ -143,9 +149,9 @@ export default {
 
     getImage(path, file) {
       const imageURL =
-        this.config.public.VUE_APP_CDN_URL +
+        this.config.public.CDN_URL +
         "/" +
-        this.config.public.VUE_APP_CDN_REPOSITORY_PATH +
+        this.config.public.CDN_REPOSITORY_PATH +
         "/image/" +
         path +
         "/" +
@@ -157,7 +163,7 @@ export default {
 
   computed: {
     dateFormatter() {
-      return this.$config.public.VUE_APP_DATEFORMAT;
+      return this.$config.public.DATEFORMAT;
     },
   },
 };

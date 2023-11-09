@@ -4,11 +4,19 @@
       class="container mx-auto xl:flex xl:justify-between xl:items-center py-5"
     >
       <div class="flex items-center justify-between">
-        <NuxtLink to="/" class="hover:text-fs-yellow"
-          ><NuxtImg
+        <NuxtLink to="/" class="hover:text-fs-yellow">
+          <!--
+          <NuxtImg
             role="img"
             class="block float-left w-8 mt-1 mr-3"
+            src="../images/svg/firestarters-icon.svg"
+            aria-label="firestarters icon"
+            alt="Firestarters Icon"
+          />
+          -->
+          <img
             src="/images/svg/firestarters-icon.svg"
+            class="block float-left w-8 mt-1 mr-3"
             aria-label="firestarters icon"
             alt="Firestarters Icon"
           />

@@ -1,8 +1,8 @@
 applications:
-  - name: firestarters-mrk1
-    path: dist
+  - name: firestarters-mrk2
+    path: .output/public
     routes:
-      - route: firestarters-dev.cxahub.com
+      - route: firestarters-dev-mrk2.cxahub.com
     buildpack: nginx_buildpack
     memory: 1024M
     services:

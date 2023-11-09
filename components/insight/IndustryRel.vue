@@ -37,9 +37,9 @@ export default {
 
     //Fetch data.
     const { pending, data: insightsIndustryRel } = useLazyFetch(
-      config.public.VUE_APP_API_URL +
+      config.public.API_URL +
         "/" +
-        config.public.VUE_APP_API_CONTENT_INDUSTRY_REL_ROUTE,
+        config.public.API_CONTENT_INDUSTRY_REL_ROUTE,
       {
         query: {
           c_id: parseInt(props.insightID),

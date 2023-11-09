@@ -7,7 +7,15 @@
       <div v-for="advisor in advisors" :key="advisor.id">
         <div class="text-center bg-fs-light-gray rounded-lg p-10">
           <NuxtLink :to="advisor.linkedin" target="_blank">
+            <!--
             <NuxtImg
+              :src="getImage(advisor.path, advisor.image)"
+              loading="lazy"
+              class="mx-auto rounded-full w-1/2"
+              aria-label="advisor image"
+            />
+            -->
+            <img
               :src="getImage(advisor.path, advisor.image)"
               loading="lazy"
               class="mx-auto rounded-full w-1/2"
@@ -26,11 +34,19 @@
           </div>
 
           <NuxtLink :to="advisor.linkedin" target="_blank">
+            <!--
             <NuxtImg
               src="/images/svg/linkedin-icon.svg"
               loading="lazy"
               class="mx-auto w-8"
               aria-label="advisor image"
+            />
+            -->
+            <img
+              src="/images/svg/linkedin-icon.svg"
+              loading="lazy"
+              class="mx-auto w-8"
+              aria-label="linkedin icon"
             />
           </NuxtLink>
         </div>
@@ -138,15 +154,6 @@ export default {
         {
           id: "11",
           path: "cxa",
-          image: "pkrall.jpg",
-          name: "Patricia Krall",
-          title: "Retail CXA",
-          linkedin: "https://www.linkedin.com/in/patriciakrall1981/",
-        },
-
-        {
-          id: "12",
-          path: "cxa",
           image: "zkrauss.jpg",
           name: "Zev Krauss",
           title: "Retail CXA",
@@ -154,7 +161,7 @@ export default {
         },
 
         {
-          id: "13",
+          id: "12",
           path: "cxa",
           image: "lmcdonald.jpg",
           name: "Luke McDonald",
@@ -163,7 +170,7 @@ export default {
         },
 
         {
-          id: "14",
+          id: "13",
           path: "cxa",
           image: "totten.jpg",
           name: "Thomas Otten",
@@ -172,7 +179,7 @@ export default {
         },
 
         {
-          id: "15",
+          id: "14",
           path: "cxa",
           image: "rsaluja.jpg",
           name: "Ritu Saluja",
@@ -181,7 +188,7 @@ export default {
         },
 
         {
-          id: "16",
+          id: "15",
           path: "cxa",
           image: "dscribner.jpg",
           name: "David Scribner",
@@ -190,7 +197,7 @@ export default {
         },
 
         {
-          id: "17",
+          id: "16",
           path: "cxa",
           image: "asingh.jpg",
           name: "Amrish Singh",
@@ -199,7 +206,7 @@ export default {
         },
 
         {
-          id: "18",
+          id: "17",
           path: "cxa",
           image: "avastert.jpg",
           name: "Anouk Vastert",
@@ -213,9 +220,9 @@ export default {
   methods: {
     getImage(path, file) {
       const imageURL =
-        this.config.public.VUE_APP_CDN_URL +
+        this.config.public.CDN_URL +
         "/" +
-        this.config.public.VUE_APP_CDN_REPOSITORY_PATH +
+        this.config.public.CDN_REPOSITORY_PATH +
         "/image/" +
         path +
         "/" +

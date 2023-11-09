@@ -11,7 +11,15 @@
         <div v-for="(event, index) in events" :key="event.id">
           <div v-if="index == 0">
             <NuxtLink :to="`/events/${event.id}/${event.e_canonical_title}`">
+              <!--
               <NuxtImg
+                :src="getImage(event.imgt_path, event.img_file)"
+                loading="lazy"
+                class="block rounded-lg w-full"
+                aria-label="event image"
+              />
+              -->
+              <img
                 :src="getImage(event.imgt_path, event.img_file)"
                 loading="lazy"
                 class="block rounded-lg w-full"
@@ -70,7 +78,7 @@
       to collectively define what a great customer experience can be.
     </div>
     <div class="py-4">
-      <UiButton text="More Event" path="/events" type="secondary" />
+      <UiButton text="More Event" path="/events" format="secondary" />
     </div>
   </div>
 </template>
@@ -85,9 +93,7 @@ export default {
 
     //Fetch data.
     const { pending, data: events } = useLazyFetch(
-      config.public.VUE_APP_API_URL +
-        "/" +
-        config.public.VUE_APP_API_EVENT_ROUTE
+      config.public.API_URL + "/" + config.public.API_EVENT_ROUTE
     );
     return {
       config,
@@ -107,9 +113,9 @@ export default {
 
     getImage(path, file) {
       const imageURL =
-        this.config.public.VUE_APP_CDN_URL +
+        this.config.public.CDN_URL +
         "/" +
-        this.config.public.VUE_APP_CDN_REPOSITORY_PATH +
+        this.config.public.CDN_REPOSITORY_PATH +
         "/image/" +
         path +
         "/" +
@@ -121,7 +127,7 @@ export default {
 
   computed: {
     dateFormatter() {
-      return this.$config.public.VUE_APP_DATEFORMAT;
+      return this.$config.public.DATEFORMAT;
     },
   },
 };

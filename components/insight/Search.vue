@@ -58,9 +58,7 @@ export default {
 
     //Fetch data.
     const { pending, data: industries } = useLazyFetch(
-      config.public.VUE_APP_API_URL +
-        "/" +
-        config.public.VUE_APP_API_INDUSTRY_ROUTE,
+      config.public.API_URL + "/" + config.public.API_INDUSTRY_ROUTE,
       {
         query: {
           status_id: 1,

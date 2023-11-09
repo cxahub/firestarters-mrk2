@@ -7,11 +7,20 @@
       <h1 class="text-4xl font-bold text-white capitalize">Learn & Earn</h1>
     </div>
     <div class="py-4 text-xl text-white">Members Earn Digital Badges</div>
+    <!--
     <NuxtImg
       src="/images/logo/firestarters-academy-logo-reversed-275px.png"
       loading="lazy"
       class="w-full"
       aria-label="Tool image"
+    />
+    -->
+    <img
+      src="/images/logo/firestarters-academy-logo-reversed-275px.png"
+      loading="lazy"
+      class="w-full"
+      aria-label="academy logo"
+      alt="Academy logo"
     />
     <div class="py-4 text-xl text-white">
       Take Advantage of the Knowledge Our Industry Leaders Have to Share!

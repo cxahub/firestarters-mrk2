@@ -54,9 +54,7 @@ export default {
 
     //Fetch data.
     const { pending, data: analyticsPageView } = useLazyFetch(
-      config.public.VUE_APP_API_URL +
-        "/" +
-        config.public.VUE_APP_API_ANALYTICS_PAGE_VIEW_ROUTE,
+      config.public.API_URL + "/" + config.public.API_ANALYTICS_PAGE_VIEW_ROUTE,
       {
         query: {
           ref_id: props.ref_id,
@@ -66,9 +64,7 @@ export default {
 
     //Fetch data.
     const { pending: pending2, data: userCommentStats } = useLazyFetch(
-      config.public.VUE_APP_API_URL +
-        "/" +
-        config.public.VUE_APP_API_USER_COMMENT_ROUTE,
+      config.public.API_URL + "/" + config.public.API_USER_COMMENT_ROUTE,
       {
         query: {
           ref_id: props.ref_id,

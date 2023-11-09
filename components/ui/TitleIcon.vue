@@ -37,14 +37,15 @@
 </template>
 
 <script>
-import titleIcon from "/images/svg/diamond-icon.svg";
+import diamondIcon from "/images/svg/diamond-icon.svg";
+import flashIcon from "/images/svg/flash-bolt-icon.svg";
 
 export default {
   props: {
     text: { type: String },
     type: { type: String, default: "h1" },
     color: { type: String, default: "text-black" },
-    icon: { type: String, default: titleIcon },
+    icon: { type: String, default: diamondIcon },
   },
 
   data() {

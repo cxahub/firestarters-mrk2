@@ -132,14 +132,12 @@ export default {
     const config = useRuntimeConfig();
 
     function dateFormat(value) {
-      return moment(value).format(config.public.VUE_APP_DATEFORMAT);
+      return moment(value).format(config.public.DATEFORMAT);
     }
 
     //Fetch data.
     const { pending, data: videos } = useLazyFetch(
-      config.public.VUE_APP_API_URL +
-        "/" +
-        config.public.VUE_APP_API_CONTENT_VIDEO_REL_ROUTE,
+      config.public.API_URL + "/" + config.public.API_CONTENT_VIDEO_REL_ROUTE,
       {
         query: {
           v_id: 2,

@@ -21,7 +21,15 @@
           <NuxtLink
             :to="`/insights/${insight.c_id}/${insight.c_canonical_title}`"
           >
-            <NuxtImg
+            <!--  
+          <NuxtImg
+              :src="getImage(insight.imgt_path, insight.img_file)"
+              loading="lazy"
+              class="block rounded-lg"
+              aria-label="insight image"
+            />
+          -->
+            <img
               :src="getImage(insight.imgt_path, insight.img_file)"
               loading="lazy"
               class="block rounded-lg"
@@ -92,7 +100,7 @@ export default {
     const config = useRuntimeConfig();
 
     function dateFormat(value) {
-      return moment(value).format(config.public.VUE_APP_DATEFORMAT);
+      return moment(value).format(config.public.DATEFORMAT);
     }
 
     const kw = ref(props.kw);
@@ -101,9 +109,9 @@ export default {
     const { data: insights } = await useAsyncData(
       "insights",
       () =>
-        $fetch(`/${config.public.VUE_APP_API_CONTENT_ROUTE}`, {
+        $fetch(`/${config.public.API_CONTENT_ROUTE}`, {
           method: "GET",
-          baseURL: config.public.VUE_APP_API_URL,
+          baseURL: config.public.API_URL,
           params: {
             c_date_gte: dateFormat(Date.now()),
             c_date_exp: dateFormat(Date.now()),
@@ -129,9 +137,9 @@ export default {
   methods: {
     getImage(path, file) {
       const imageURL =
-        this.config.public.VUE_APP_CDN_URL +
+        this.config.public.CDN_URL +
         "/" +
-        this.config.public.VUE_APP_CDN_REPOSITORY_PATH +
+        this.config.public.CDN_REPOSITORY_PATH +
         "/image/" +
         path +
         "/" +

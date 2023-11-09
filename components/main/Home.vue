@@ -35,7 +35,7 @@ export default {
       pageLinkTitle: "Join Us",
       pageLinkType: "modal",
       pageLinkTarget: "#registerModal",
-      pageSubTitle2: "Who Do We Do?",
+      pageSubTitle2: "What Do We Do?",
       pageMessage2:
         "Each Firestarters member has ownership in our business community. We know the market is tough which is why our charter is to build and support each other through crowdsourced past learnings, thought leadership, expertise and strategy as you build your business.",
       pageLink2: "/about",

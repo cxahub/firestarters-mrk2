@@ -126,9 +126,7 @@ export default {
 
     //Fetch data.
     const { pending, data: events } = useLazyFetch(
-      config.public.VUE_APP_API_URL +
-        "/" +
-        config.public.VUE_APP_API_EVENT_ROUTE,
+      config.public.API_URL + "/" + config.public.API_EVENT_ROUTE,
       {
         query: {
           id: route.params.id,
@@ -139,9 +137,9 @@ export default {
 
     //Fetch data.
     const { pending: pending2, data: schedules } = useLazyFetch(
-      config.public.VUE_APP_API_URL +
+      config.public.API_URL +
         "/" +
-        config.public.VUE_APP_API_EVENT_ROUTE +
+        config.public.API_EVENT_ROUTE +
         "-schedule-rel/?e_id" +
         route.params.id
     );
@@ -173,7 +171,7 @@ export default {
 
   computed: {
     dateFormatter() {
-      return this.$config.public.VUE_APP_DATEFORMAT;
+      return this.$config.public.DATEFORMAT;
     },
   },
 };

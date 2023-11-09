@@ -4,8 +4,17 @@
       <div class="py-10 grid grid-rows-1">
         <div class="grid grid-cols-3">
           <div class="col-span-2">
-            <NuxtLink to="/" class="hover:text-fs-yellow"
-              ><NuxtImg
+            <NuxtLink to="/" class="hover:text-fs-yellow">
+              <!--
+                <NuxtImg
+                role="img"
+                class="block float-left lg:w-8 sm:w-6 mt-1 mr-3"
+                src="/images/svg/firestarters-icon.svg"
+                aria-label="firestarters icon"
+                alt="Firestarters Icon"
+              />
+              -->
+              <img
                 role="img"
                 class="block float-left lg:w-8 sm:w-6 mt-1 mr-3"
                 src="/images/svg/firestarters-icon.svg"
@@ -24,7 +33,15 @@
             </NuxtLink>
           </div>
           <div>
+            <!--
             <NuxtImg
+              class="block lg:w-1/6 sm:w-1/3 float-right"
+              role="img"
+              src="/images/svg/footer-logo.svg"
+              aria-label="cxa logo"
+            />
+            -->
+            <img
               class="block lg:w-1/6 sm:w-1/3 float-right"
               role="img"
               src="/images/svg/footer-logo.svg"
@@ -136,7 +153,15 @@
       </div>
       <div class="grid grid-rows-1">
         <NuxtLink :to="`${linkedInURL}`" target="_blank">
+          <!--
           <NuxtImg
+            class="mx-auto"
+            role="img"
+            src="/images/svg/linkedin-icon.svg"
+            aria-label="linkedin icon"
+          />
+          -->
+          <img
             class="mx-auto"
             role="img"
             src="/images/svg/linkedin-icon.svg"
@@ -167,8 +192,8 @@
 export default {
   data() {
     return {
-      companyEmail: process.env.VUE_APP_COMPANY_EMAIL,
-      linkedInURL: process.env.VUE_APP_FIRESTARTERS_LINKEDIN_URL,
+      companyEmail: process.env.COMPANY_EMAIL,
+      linkedInURL: process.env.FIRESTARTERS_LINKEDIN_URL,
     };
   },
 };

@@ -6,6 +6,104 @@
     :pageMessage="pageMessage"
   />
   <main class="container mx-auto py-8">
+    <div class="grid grid-cols-1">
+      <div class="py-4">
+        <UiTitleIcon
+          text="Flash Enterprise Maturity Assessment"
+          :icon="flashIcon"
+        />
+        <div class="px-12">
+          <p class="pb-4">
+            CX Advisory's FLASH model is a proprietary research tool that
+            assesses, scores, and ranks brands against their peers and the
+            industry average. FLASH analyzes attributes across the business to
+            assess brands' maturity against changing trends, market conditions
+            and consumer needs. Leading brands rely on FLASH benchmarks to
+            clarify priorities, develop strategies and capabilities, and
+            increase their organization's overall performance.
+          </p>
+          <p class="pb-4">
+            <img
+              role="img"
+              src="/images/flash/flash-banner.jpg"
+              class="h-auto max-w-full rounded-lg"
+              aria-label="Flash Banner"
+            />
+          </p>
+        </div>
+      </div>
+      <div class="py-4">
+        <UiTitleIcon text="Scoring & Ranking" type="h2" />
+        <div class="px-12">
+          <p class="pb-4">
+            An overall digital maturity score is calculated based on the
+            weighted scoring of the individual attributes, to compare against
+            peers & the industry average.
+          </p>
+          <p class="pb-4">
+            <img
+              role="img"
+              src="/images/flash/flash-score.png"
+              class="h-auto max-w-full rounded-lg"
+              aria-label="Flash Banner"
+            />
+          </p>
+        </div>
+      </div>
+      <div class="py-4">
+        <UiTitleIcon text="Analyze the Result" type="h2" />
+        <div class="px-12">
+          <p class="pb-4">
+            A report is provided where you can dive deep into each attribute to
+            identify strengths & opportunities.
+          </p>
+          <p class="pb-4">
+            <img
+              role="img"
+              src="/images/flash/flash-strengths.png"
+              class="h-auto max-w-full rounded-lg"
+              aria-label="Flash Banner"
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="py-4">
+      <UiTitleIcon text="The Methodology" type="h2" />
+      <div class="px-12">
+        <p class="pb-4">
+          FLASH Assessment and performance benchmarks are provided by SAP, a
+          global leader in enterprise cloud technology supporting 87% of total
+          global commerce.
+        </p>
+        <p class="pb-4">
+          Company scores from FLASH are collected, protected and analyzed using
+          SAP's Value Lifecycle Management (VLM) technology. VLM provides
+          companies with tools, such as benchmarking surveys and business cases,
+          to identify the financial and strategic value of their digital
+          transformation initiatives.
+        </p>
+      </div>
+    </div>
+    <div class="py-4">
+      <UiTitleIcon text="Get Your Brand Report" type="h2" />
+      <div class="px-12">
+        <p class="pb-4">
+          Take the <strong>FLASH Retail Assessment</strong> now and see how your
+          retail business' maturity compares to the industry. Get best practice
+          recommendations on how to improve your business, and request a
+          knowledge expert to walk you through your results.
+        </p>
+        <p class="pb-4">
+          <UiButton
+            text="Start Your Flash Now!"
+            :path="flashWebsiteURL"
+            target="_blank"
+            type="link"
+          />
+        </p>
+      </div>
+    </div>
     <div class="grid grid-cols-1 py-4">
       <div class="py-4">
         <UiTitleIcon
@@ -93,98 +191,6 @@
     </div>
     <div class="grid grid-cols-1">
       <div class="py-4">
-        <UiTitleIcon text="Flash - Coming Soon" :icon="flashIcon" />
-        <UiTags
-          tags="methodology, scoring ranking, analyze"
-          class="px-12 py-2"
-        />
-        <div class="px-12">
-          <p class="pb-4">
-            CX Advisory's "FLASH" model is a proprietary research tool that
-            assesses, scores, and ranks brands against their peers, and the
-            industry average. FLASH analyzes attributes against industry best
-            practices across the whole customer cycle, and covers all channels
-            and functionality.
-          </p>
-          <p class="pb-4">
-            FLASH goes deep into industry specific best practices, from
-            ecommerce/omnichannel commerce, to customer data, to
-            personalization, to digital marketing. By using this tool you will
-            get detailed insights into how your organization performs against
-            those best practices, and outlines key opportunties to drive
-            incrementality for your business.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="grid lg:grid-cols-3 sm:grid-cols-1">
-      <div class="py-4">
-        <UiTitleIcon text="The Methodology" type="h2" />
-        <div class="px-12">
-          <p class="pb-4">
-            Quickly assess your customer experience against industry best
-            practices to identify strengths, and opportunities.
-          </p>
-          <NuxtImg
-            role="img"
-            src="/images/features/flash-feature-01.png"
-            class="h-auto max-w-full"
-            aria-label="feature image"
-          />
-        </div>
-      </div>
-      <div class="py-4">
-        <UiTitleIcon text="Scoring & Ranking" type="h2" />
-        <div class="px-12">
-          <p class="pb-4">
-            An overall digital maturity score is calculated based on the
-            weighted scoring of the individual attributes, to compare against
-            peers & the industry average.
-          </p>
-          <NuxtImg
-            role="img"
-            src="/images/features/flash-feature-02.png"
-            class="h-auto max-w-full"
-            aria-label="feature image"
-          />
-        </div>
-      </div>
-      <div class="py-4">
-        <UiTitleIcon text="Analyze the Result" type="h2" />
-        <div class="px-12">
-          <p class="pb-4">
-            A report is provided where you can dive deep into each attribute to
-            identify strengths & opportunities.
-          </p>
-          <NuxtImg
-            role="img"
-            src="/images/features/flash-feature-03.png"
-            class="h-auto max-w-full"
-            aria-label="feature image"
-          />
-        </div>
-      </div>
-    </div>
-    <div class="grid grid-cols-1">
-      <div class="py-4">
-        <UiTitleIcon text="Analyze the Result" />
-        <p class="px-12 pb-4">
-          A report is provided where you can dive deep into each attribute to
-          identify strengths & opportunities. If you want to be the first to
-          know about FLASH and help us test the new version of this tool, click
-          the button below to let us know.
-        </p>
-        <p class="px-12">
-          <UiButton
-            text="Flash BETA"
-            path="https://sapdiscovery.fra1.qualtrics.com/jfe/form/SV_0lyHd5olrViCnjM"
-            target="_blank"
-          />
-        </p>
-      </div>
-    </div>
-    <div class="grid grid-cols-1">
-      <div class="py-4">
         <p class="px-12 pb-4">
           Join the Firestarters community to stay up to date on the continuous
           development and availability of tools that can help you unlock value,
@@ -192,43 +198,46 @@
         </p>
         <p class="px-12">
           <UiButton text="Sign Up" path="/register" class="mr-4" />
-          <UiButton text="Learn More" path="/about" type="secondary" />
+          <UiButton text="Learn More" path="/about" format="secondary" />
         </p>
       </div>
     </div>
   </main>
 </template>
 
-<script>
+<script setup>
 //Import image(s).
 import pageImage from "/images/banner/page-banner-tools.jpg";
 import flashIcon from "/images/svg/flash-bolt-icon.svg";
 import benefitsCalculatorIcon from "/images/svg/benefit-calculator-icon.svg";
 
-export default {
-  setup() {
-    useHead({
-      title: "Tools - Firestarters",
-      meta: [
-        {
-          name: "description",
-          content:
-            "Join the Firestarters community to stay up to date on the continuous development and availability of tools that can help you unlock value, and drive your business forward.",
-        },
-      ],
-    });
+const props = defineProps({
+  pageTitle: {
+    type: String,
+    default:
+      "Discover our online self-assist <span class='text-fs-yellow'>tools</span>",
   },
-  data() {
-    return {
-      pageImage: pageImage,
-      pageTitle:
-        "Discover our online self-assist <span class='text-fs-yellow'>tools</span>",
-      pageSubTitle: "Impactful Tools",
-      pageMessage:
+  pageSubTitle: { type: String, default: "Impactful Tools" },
+  pageMessage: {
+    type: String,
+    default:
+      "Join the Firestarters community to stay up to date on the continuous development and availability of tools that can help you unlock value, and drive your business forward.",
+  },
+});
+
+//Configuation.
+const config = useRuntimeConfig();
+
+useHead({
+  title: "Tools - Firestarters",
+  meta: [
+    {
+      name: "description",
+      content:
         "Join the Firestarters community to stay up to date on the continuous development and availability of tools that can help you unlock value, and drive your business forward.",
-      flashIcon: flashIcon,
-      benefitsCalculatorIcon: benefitsCalculatorIcon,
-    };
-  },
-};
+    },
+  ],
+});
+
+const flashWebsiteURL = config.public.FLASH_WEBSITE_URL;
 </script>

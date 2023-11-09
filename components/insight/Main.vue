@@ -13,7 +13,16 @@
             <NuxtLink
               :to="`/insights/${insight.c_id}/${insight.c_canonical_title}`"
             >
-              <NuxtImg
+              <!--  
+            <NuxtImg
+                role="img"
+                loading="lazy"
+                :src="getImage(insight.imgt_path, insight.img_file)"
+                class="block rounded-lg w-full"
+                aria-label="insight image"
+              />
+            -->
+              <img
                 role="img"
                 loading="lazy"
                 :src="getImage(insight.imgt_path, insight.img_file)"
@@ -77,7 +86,7 @@
       other members.
     </div>
     <div class="py-4">
-      <UiButton text="More Insights" path="/insights" type="secondary" />
+      <UiButton text="More Insights" path="/insights" format="secondary" />
     </div>
   </div>
 </template>
@@ -91,14 +100,12 @@ export default {
     const config = useRuntimeConfig();
 
     function dateFormat(value) {
-      return moment(value).format(config.public.VUE_APP_DATEFORMAT);
+      return moment(value).format(config.public.DATEFORMAT);
     }
 
     //Fetch data.
     const { pending, data: insights } = useLazyFetch(
-      config.public.VUE_APP_API_URL +
-        "/" +
-        config.public.VUE_APP_API_CONTENT_ROUTE,
+      config.public.API_URL + "/" + config.public.API_CONTENT_ROUTE,
       {
         query: {
           c_date_gte: dateFormat(Date.now()),
@@ -126,9 +133,9 @@ export default {
 
     getImage(path, file) {
       const imageURL =
-        this.config.public.VUE_APP_CDN_URL +
+        this.config.public.CDN_URL +
         "/" +
-        this.config.public.VUE_APP_CDN_REPOSITORY_PATH +
+        this.config.public.CDN_REPOSITORY_PATH +
         "/image/" +
         path +
         "/" +
@@ -140,7 +147,7 @@ export default {
 
   computed: {
     dateFormatter() {
-      return this.$config.public.VUE_APP_DATEFORMAT;
+      return this.$config.public.DATEFORMAT;
     },
   },
 };

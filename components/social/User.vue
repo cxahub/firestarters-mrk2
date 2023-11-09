@@ -5,7 +5,16 @@
   <div v-else>
     <!--Social user-->
     <div class="relative block w-[min-content_lfr] float-left py-2">
+      <!--
       <NuxtImg
+        role="img"
+        loading="lazy"
+        :src="getImage(imgtPath, imgFile)"
+        class="relative rounded-full w-20 z-[4]"
+        aria-label="insight author image"
+      />
+      -->
+      <img
         role="img"
         loading="lazy"
         :src="getImage(imgtPath, imgFile)"
@@ -80,9 +89,9 @@ export default {
 
     //Fetch data.
     const { pending, data: userFieldRel } = useLazyFetch(
-      config.public.VUE_APP_API_URL +
+      config.public.API_URL +
         "/" +
-        config.public.VUE_APP_API_USER_FIELD_REL_ROUTE +
+        config.public.API_USER_FIELD_REL_ROUTE +
         "/?user_id=" +
         props.userID +
         "&uf_id=1"
@@ -100,9 +109,9 @@ export default {
 
     getImage(path, file) {
       const imageURL =
-        this.config.public.VUE_APP_CDN_URL +
+        this.config.public.CDN_URL +
         "/" +
-        this.config.public.VUE_APP_CDN_REPOSITORY_PATH +
+        this.config.public.CDN_REPOSITORY_PATH +
         "/image/" +
         path +
         "/" +
@@ -114,7 +123,7 @@ export default {
 
   computed: {
     dateFormatter() {
-      return this.$config.public.VUE_APP_DATEFORMAT;
+      return this.$config.public.DATEFORMAT;
     },
   },
 };

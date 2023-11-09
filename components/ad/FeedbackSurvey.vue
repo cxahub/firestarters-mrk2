@@ -26,7 +26,7 @@ export default {
     //Get runtime config.
     const config = useRuntimeConfig();
 
-    const feedbackURL = config.public.VUE_APP_FIRESTARTERS_FEEDBACK_SURVEY_URL;
+    const feedbackURL = config.public.FIRESTARTERS_FEEDBACK_SURVEY_URL;
 
     return {
       feedbackURL,

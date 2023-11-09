@@ -118,9 +118,7 @@ export default {
 
     //Fetch data.
     const { pending, data: insights } = useLazyFetch(
-      config.public.VUE_APP_API_URL +
-        "/" +
-        config.public.VUE_APP_API_CONTENT_ROUTE,
+      config.public.API_URL + "/" + config.public.API_CONTENT_ROUTE,
       {
         query: {
           id: route.params.id,
@@ -131,14 +129,14 @@ export default {
 
     //Fetch video data.
     const { pending: pending2, data: videos } = useLazyFetch(
-      config.public.VUE_APP_API_URL +
+      config.public.API_URL +
         "/" +
-        config.public.VUE_APP_API_CONTENT_VIDEO_REL_ROUTE +
+        config.public.API_CONTENT_VIDEO_REL_ROUTE +
         "/?c_id=" +
         route.params.id
     );
 
-    const feedbackURL = config.public.VUE_APP_FIRESTARTERS_FEEDBACK_SURVEY_URL;
+    const feedbackURL = config.public.FIRESTARTERS_FEEDBACK_SURVEY_URL;
 
     return {
       config,

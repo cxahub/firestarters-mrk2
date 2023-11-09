@@ -28,9 +28,9 @@ export default {
     const config = useRuntimeConfig();
     const host = useRequestURL().origin + useRequestURL().pathname;
     const imagePath =
-      config.public.VUE_APP_CDN_URL +
+      config.public.CDN_URL +
       "/" +
-      config.public.VUE_APP_CDN_REPOSITORY_PATH +
+      config.public.CDN_REPOSITORY_PATH +
       "/image";
 
     useHead({

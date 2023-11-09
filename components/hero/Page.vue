@@ -3,7 +3,16 @@
     class="container mx-auto relative block top-0 overflow-hidden mt-0 mb-0 lg:py-16 sm:py-4 rounded-b-lg"
     :style="bgImage"
   >
-    <NuxtImg
+    <!--
+      <NuxtImg
+      role="img"
+      class="absolute top-0 left-0 right-0 w-full bg-fs-brown opacity-30"
+      src="/images/svg/x-background.svg"
+      loading="lazy"
+      aria-label="background icon"
+    />
+    -->
+    <img
       role="img"
       class="absolute top-0 left-0 right-0 w-full bg-fs-brown opacity-30"
       src="/images/svg/x-background.svg"
