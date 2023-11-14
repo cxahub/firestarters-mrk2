@@ -11,14 +11,6 @@
         <div v-for="(event, index) in events" :key="event.id">
           <div v-if="index == 0">
             <NuxtLink :to="`/events/${event.id}/${event.e_canonical_title}`">
-              <!--
-              <NuxtImg
-                :src="getImage(event.imgt_path, event.img_file)"
-                loading="lazy"
-                class="block rounded-lg w-full"
-                aria-label="event image"
-              />
-              -->
               <img
                 :src="getImage(event.imgt_path, event.img_file)"
                 loading="lazy"
@@ -47,7 +39,7 @@
             <div class="block w-full float-left font-bold">
               <span v-if="event.e_city !== '' && event.e_city !== null"
                 >{{ event.e_city }} - </span
-              >{{ event.edt_name }} - {{ dateFormat(event.e_date) }}
+              >{{ event.edt_name }} - {{ $dateFormat(event.e_date) }}
             </div>
 
             <!--Event notes-->
@@ -83,52 +75,24 @@
   </div>
 </template>
 
-<script>
-import moment from "moment";
+<script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
 
-export default {
-  setup() {
-    //Get runtime config.
-    const config = useRuntimeConfig();
+//Fetch data.
+const { pending, data: events } = useLazyFetch(
+  config.public.API_URL + "/" + config.public.API_EVENT_ROUTE
+);
 
-    //Fetch data.
-    const { pending, data: events } = useLazyFetch(
-      config.public.API_URL + "/" + config.public.API_EVENT_ROUTE
-    );
-    return {
-      config,
-      events,
-      pending,
-    };
-  },
-
-  data() {
-    return {};
-  },
-
-  methods: {
-    dateFormat(value) {
-      return moment(value).format(this.dateFormatter);
-    },
-
-    getImage(path, file) {
-      const imageURL =
-        this.config.public.CDN_URL +
-        "/" +
-        this.config.public.CDN_REPOSITORY_PATH +
-        "/image/" +
-        path +
-        "/" +
-        file;
-
-      return imageURL;
-    },
-  },
-
-  computed: {
-    dateFormatter() {
-      return this.$config.public.DATEFORMAT;
-    },
-  },
-};
+function getImage(path, file) {
+  const imageURL =
+    this.config.public.CDN_URL +
+    "/" +
+    this.config.public.CDN_REPOSITORY_PATH +
+    "/image/" +
+    path +
+    "/" +
+    file;
+  return imageURL;
+}
 </script>

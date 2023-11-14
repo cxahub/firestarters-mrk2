@@ -21,44 +21,26 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    eventID: { type: Number },
-    size: { type: String },
-  },
+<script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
 
-  setup(props) {
-    //Get runtime config.
-    const config = useRuntimeConfig();
+const props = defineProps({
+  eventID: { type: Number },
+  size: { type: String },
+});
 
-    //Fetch data.
-    const { pending, data: documents } = useLazyFetch(
-      config.public.API_URL +
-        "/" +
-        config.public.API_EVENT_ROUTE +
-        "-document-rel",
-      {
-        query: {
-          e_id: parseInt(props.eventID),
-          status_id: 1,
-        },
-      }
-    );
-    return {
-      config,
-      documents,
-      pending,
-    };
-  },
+//Fetch data.
+const { pending, data: documents } = useLazyFetch(
+  config.public.API_URL + "/" + config.public.API_EVENT_ROUTE + "-document-rel",
+  {
+    query: {
+      e_id: parseInt(props.eventID),
+      status_id: 1,
+    },
+  }
+);
 
-  data() {
-    return {
-      repositoryPath:
-        this.$config.public.CDN_URL +
-        "/" +
-        this.$config.public.CDN_REPOSITORY_PATH,
-    };
-  },
-};
+const repositoryPath =
+  config.public.CDN_URL + "/" + config.public.CDN_REPOSITORY_PATH;
 </script>

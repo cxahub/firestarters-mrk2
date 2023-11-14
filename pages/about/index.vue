@@ -6,10 +6,10 @@
     :pageMessage="pageMessage"
   />
   <main class="container mx-auto py-8">
-    <div class="grid grid-cols-1 py-4">
+    <div class="grid grid-cols-1">
       <div class="py-4">
         <UiTitleIcon text="What is the Firestarters Community?" />
-        <div class="py-2">
+        <div class="pb-4">
           It is a global gathering of people that have Customer Experience in
           their DNA and want to exchange together in a safe and open
           environment. Think about a group of friends & colleagues that share a

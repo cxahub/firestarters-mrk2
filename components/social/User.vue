@@ -5,15 +5,6 @@
   <div v-else>
     <!--Social user-->
     <div class="relative block w-[min-content_lfr] float-left py-2">
-      <!--
-      <NuxtImg
-        role="img"
-        loading="lazy"
-        :src="getImage(imgtPath, imgFile)"
-        class="relative rounded-full w-20 z-[4]"
-        aria-label="insight author image"
-      />
-      -->
       <img
         role="img"
         loading="lazy"
@@ -80,7 +71,7 @@ export default {
     authorLastName: { type: String, default: "" },
     datePosted: { type: String, default: "" },
     readTime: { type: String, default: "" },
-    color: { type: Boolean },
+    color: { type: Boolean, default: false },
   },
 
   setup(props) {
@@ -108,7 +99,7 @@ export default {
     },
 
     getImage(path, file) {
-      const imageURL =
+      let imageURL =
         this.config.public.CDN_URL +
         "/" +
         this.config.public.CDN_REPOSITORY_PATH +
@@ -116,6 +107,10 @@ export default {
         path +
         "/" +
         file;
+
+      if (imageURL.includes("null")) {
+        imageURL = "/images/cxa/avatar.png";
+      }
 
       return imageURL;
     },

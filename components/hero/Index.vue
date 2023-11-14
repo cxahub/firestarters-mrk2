@@ -3,15 +3,6 @@
     class="container mx-auto relative block top-0 z-10 overflow-hidden mt-0 mb-0 bg-fs-brown bg-cover lg:py-16 sm:py-4 rounded-b-lg"
     :style="bgImage"
   >
-    <!--
-    <NuxtImg
-      role="img"
-      class="absolute top-0 left-0 right-0 w-full z-0"
-      src="/images/svg/x-background.svg"
-      loading="lazy"
-      aria-label="background icon"
-    />
-  -->
     <img
       role="img"
       class="absolute top-0 left-0 right-0 w-full z-0"
@@ -71,87 +62,106 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    pageImage: {
-      type: String,
-      default: "",
-    },
+<script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
 
-    pageTitle: {
-      type: String,
-      default: "",
-    },
-
-    pageSubTitle: {
-      type: String,
-      default: "",
-    },
-
-    pageMessage: {
-      type: String,
-      default: "",
-    },
-
-    pageLink: {
-      type: String,
-      default: "",
-    },
-
-    pageLinkTitle: {
-      type: String,
-      default: "",
-    },
-
-    pageLinkType: {
-      type: String,
-      default: "",
-    },
-
-    pageLinkTarget: {
-      type: String,
-      default: "",
-    },
-
-    pageSubTitle2: {
-      type: String,
-      default: "",
-    },
-
-    pageMessage2: {
-      type: String,
-      default: "",
-    },
-
-    pageLink2: {
-      type: String,
-      default: "",
-    },
-
-    pageLinkTitle2: {
-      type: String,
-      default: "",
-    },
-
-    pageLinkType2: {
-      type: String,
-      default: "",
-    },
-
-    pageLinkTarget2: {
-      type: String,
-      default: "",
-    },
+const props = defineProps({
+  pageImagePath: {
+    type: String,
+    default: "",
   },
-  data() {
-    return {
-      bgImage: {
-        "background-position": "center center",
-        "background-size": "cover",
-        "background-image": `url(${this.pageImage})`,
-      },
-    };
+
+  pageImageFile: {
+    type: String,
+    default: "",
   },
+
+  pageTitle: {
+    type: String,
+    default: "",
+  },
+
+  pageSubTitle: {
+    type: String,
+    default: "",
+  },
+
+  pageMessage: {
+    type: String,
+    default: "",
+  },
+
+  pageLink: {
+    type: String,
+    default: "",
+  },
+
+  pageLinkTitle: {
+    type: String,
+    default: "",
+  },
+
+  pageLinkType: {
+    type: String,
+    default: "",
+  },
+
+  pageLinkTarget: {
+    type: String,
+    default: "",
+  },
+
+  pageSubTitle2: {
+    type: String,
+    default: "",
+  },
+
+  pageMessage2: {
+    type: String,
+    default: "",
+  },
+
+  pageLink2: {
+    type: String,
+    default: "",
+  },
+
+  pageLinkTitle2: {
+    type: String,
+    default: "",
+  },
+
+  pageLinkType2: {
+    type: String,
+    default: "",
+  },
+
+  pageLinkTarget2: {
+    type: String,
+    default: "",
+  },
+});
+
+const bgImage = {
+  "background-position": "center center",
+  "background-size": "cover",
+  "background-image": `url(${getImage(
+    props.pageImagePath,
+    props.pageImageFile
+  )})`,
 };
+
+function getImage(path, file) {
+  const imageURL =
+    config.public.CDN_URL +
+    "/" +
+    config.public.CDN_REPOSITORY_PATH +
+    "/image/" +
+    path +
+    "/" +
+    file;
+
+  return imageURL;
+}
 </script>

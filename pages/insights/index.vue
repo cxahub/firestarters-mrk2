@@ -7,41 +7,61 @@
   />
   <main class="container mx-auto py-8">
     <div class="grid grid-cols-1 py-4">
-      <InsightSearch v-model:kw="kw" v-model:industry="industry" />
+      <InsightSearch
+        v-model:kw="kw"
+        v-model:industry="industry"
+        @input="emitQueryKW"
+        @change="emitQueryIndustry"
+      />
       <InsightMain v-if="kw == '' && industry == 0" />
-      <InsightCard :kw="kw" :industry="industry" />
+      <InsightCard
+        :insightsPath="insightsPath"
+        :kw="kw"
+        :industry="industry"
+        @input="emitQueryKW"
+        @change="emitQueryIndustry"
+      />
     </div>
   </main>
 </template>
 
-<script>
-//Import image(s).
-import pageImage from "/images/banner/page-banner-insights.jpg";
+<script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
 
-export default {
-  setup() {
-    useHead({
-      title: "Insights - Firestarters",
-      meta: [
-        {
-          name: "description",
-          content:
-            "Members are welcome at anytime to jump on the site and review content, best practices, and engage with other members.",
-        },
-      ],
-    });
-  },
-  data() {
-    return {
-      pageImage: pageImage,
-      pageTitle:
-        "Discover Whats Happening Around <span class='text-fs-yellow'>You.</span>",
-      pageSubTitle: "Submit Your Insights",
-      pageMessage:
-        "Members are welcome at anytime to jump on the site and review content and (coming soon) submit your own articles, best practices, and engage with other members.",
-      kw: "",
-      industry: 0,
-    };
-  },
-};
+//Import image(s).
+import pageImageFile from "/images/banner/page-banner-insights.jpg";
+
+useHead({
+  title: "Insights - Firestarters",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Members are welcome at anytime to jump on the site and review content, best practices, and engage with other members.",
+    },
+  ],
+});
+
+const pageImage = pageImageFile;
+const pageTitle =
+  "Discover Whats Happening Around <span class='text-fs-yellow'>You.</span>";
+const pageSubTitle = "Submit Your Insights";
+const pageMessage =
+  "Members are welcome at anytime to jump on the site and review content and (coming soon) submit your own articles, best practices, and engage with other members.";
+let kw = ref("");
+let industry = ref(0);
+let insightsPath = ref(
+  `${config.public.API_URL}/${config.public.API_CONTENT_ROUTE}`
+);
+
+function emitQueryKW(value) {
+  insightsPath.value = `${config.public.API_URL}/${config.public.API_CONTENT_INDUSTRY_REL_ROUTE}`;
+  kw.value = value;
+}
+
+function emitQueryIndustry(value) {
+  insightsPath.value = `${config.public.API_URL}/${config.public.API_CONTENT_INDUSTRY_REL_ROUTE}`;
+  industry.value = value;
+}
 </script>

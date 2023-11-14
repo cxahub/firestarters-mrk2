@@ -18,7 +18,7 @@
         :key="cir.c_id"
       >
         {{ cir.i_name
-        }}<span v-if="index < insightsIndustryRel.length - 1">, </span>
+        }}<span v-if="index < insightsIndustryRel.length - 1">,&nbsp;</span>
       </div>
     </div>
   </div>

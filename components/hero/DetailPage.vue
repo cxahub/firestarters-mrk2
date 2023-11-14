@@ -3,15 +3,6 @@
     class="container mx-auto relative block top-0 overflow-hidden mt-0 mb-0 lg:py-16 sm:py-4 rounded-b-lg"
     :style="bgImage"
   >
-    <!--  
-  <NuxtImg
-      role="img"
-      class="absolute top-0 left-0 right-0 w-full bg-fs-brown opacity-70"
-      src="/images/svg/x-background.svg"
-      loading="lazy"
-      aria-label="background icon"
-    />
-  -->
     <img
       role="img"
       class="absolute top-0 left-0 right-0 w-full bg-fs-brown opacity-70"
@@ -73,7 +64,7 @@
             :authorLastName="pageAuthorLName"
             :datePosted="pageDate"
             :readTime="pageReadTime"
-            color="true"
+            :color="true"
           />
           <InsightStats v-if="showInsightStats" :ref_id="parseInt(pageID)" />
           <SocialTag
@@ -90,138 +81,123 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    pageID: {
-      type: Number,
-      default: 0,
-    },
+<script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
 
-    pageTypeID: {
-      type: Number,
-      default: 0,
-    },
-
-    pageType: {
-      type: String,
-      default: "",
-    },
-
-    pageImagePath: {
-      type: String,
-      default: "",
-    },
-
-    pageImageFile: {
-      type: String,
-      default: "",
-    },
-
-    pageTitle: {
-      type: String,
-      default: "",
-    },
-
-    pageIndustry: {
-      type: String,
-      default: "Retail",
-    },
-
-    pageDate: {
-      type: String,
-      default: "",
-    },
-
-    pageReadTime: {
-      type: String,
-      default: "",
-    },
-
-    showInsightStats: {
-      type: Boolean,
-    },
-
-    pageTags: {
-      type: String,
-      default: "",
-    },
-
-    pageCaption: {
-      type: String,
-      default: "",
-    },
-
-    pageAuthorID: {
-      type: String,
-      default: "",
-    },
-
-    pageAuthorFName: {
-      type: String,
-      default: "",
-    },
-
-    pageAuthorLName: {
-      type: String,
-      default: "",
-    },
-
-    pageAuthorImagePath: {
-      type: String,
-      default: "",
-    },
-
-    pageAuthorImageFile: {
-      type: String,
-      default: "",
-    },
+const props = defineProps({
+  pageID: {
+    type: Number,
+    default: 0,
   },
 
-  setup() {
-    //Get runtime config.
-    const config = useRuntimeConfig();
-
-    return {
-      config,
-    };
+  pageTypeID: {
+    type: Number,
+    default: 0,
   },
 
-  data() {
-    return {
-      bgImage: {
-        "background-position": "center center",
-        "background-size": "cover",
-        "background-image": `url(${this.getImage(
-          this.pageImagePath,
-          this.pageImageFile
-        )})`,
-      },
-    };
+  pageType: {
+    type: String,
+    default: "",
   },
 
-  methods: {
-    getImage(pageImagePath, pageImageFile) {
-      const imageURL =
-        this.config.public.CDN_URL +
-        "/" +
-        this.config.public.CDN_REPOSITORY_PATH +
-        "/image/" +
-        pageImagePath +
-        "/" +
-        pageImageFile;
-
-      return imageURL;
-    },
-
-    formatPageCaption(str) {
-      if (str.length > 256) {
-        return (str = str.substring(0, 256) + "...");
-        //return pageTitle;
-      } else {
-        return str;
-      }
-    },
+  pageImagePath: {
+    type: String,
+    default: "",
   },
+
+  pageImageFile: {
+    type: String,
+    default: "",
+  },
+
+  pageTitle: {
+    type: String,
+    default: "",
+  },
+
+  pageIndustry: {
+    type: String,
+    default: "Retail",
+  },
+
+  pageDate: {
+    type: String,
+    default: "",
+  },
+
+  pageReadTime: {
+    type: String,
+    default: "",
+  },
+
+  showInsightStats: {
+    type: Boolean,
+  },
+
+  pageTags: {
+    type: String,
+    default: "",
+  },
+
+  pageCaption: {
+    type: String,
+    default: "",
+  },
+
+  pageAuthorID: {
+    type: String,
+    default: "",
+  },
+
+  pageAuthorFName: {
+    type: String,
+    default: "",
+  },
+
+  pageAuthorLName: {
+    type: String,
+    default: "",
+  },
+
+  pageAuthorImagePath: {
+    type: String,
+    default: "",
+  },
+
+  pageAuthorImageFile: {
+    type: String,
+    default: "",
+  },
+});
+
+const bgImage = {
+  "background-position": "center center",
+  "background-size": "cover",
+  "background-image": `url(${getImage(
+    props.pageImagePath,
+    props.pageImageFile
+  )})`,
 };
+
+function getImage(path, file) {
+  const imageURL =
+    config.public.CDN_URL +
+    "/" +
+    config.public.CDN_REPOSITORY_PATH +
+    "/image/" +
+    path +
+    "/" +
+    file;
+
+  return imageURL;
+}
+
+function formatPageCaption(str) {
+  if (str.length > 256) {
+    return (str = str.substring(0, 256) + "...");
+  } else {
+    return str;
+  }
+}
 </script>

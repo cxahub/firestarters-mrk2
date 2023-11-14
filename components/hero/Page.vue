@@ -3,15 +3,6 @@
     class="container mx-auto relative block top-0 overflow-hidden mt-0 mb-0 lg:py-16 sm:py-4 rounded-b-lg"
     :style="bgImage"
   >
-    <!--
-      <NuxtImg
-      role="img"
-      class="absolute top-0 left-0 right-0 w-full bg-fs-brown opacity-30"
-      src="/images/svg/x-background.svg"
-      loading="lazy"
-      aria-label="background icon"
-    />
-    -->
     <img
       role="img"
       class="absolute top-0 left-0 right-0 w-full bg-fs-brown opacity-30"
@@ -37,38 +28,40 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    pageImage: {
-      type: String,
-      default: "",
-    },
+<script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
 
-    pageTitle: {
-      type: String,
-      default: "",
-    },
-
-    pageSubTitle: {
-      type: String,
-      default: "",
-    },
-
-    pageMessage: {
-      type: String,
-      default: "",
-    },
+const props = defineProps({
+  pageImage: {
+    type: String,
+    default: "",
   },
 
-  data() {
-    return {
-      bgImage: {
-        "background-position": "center center",
-        "background-size": "cover",
-        "background-image": `url(${this.pageImage})`,
-      },
-    };
+  pageTitle: {
+    type: String,
+    default: "",
   },
+
+  pageSubTitle: {
+    type: String,
+    default: "",
+  },
+
+  pageMessage: {
+    type: String,
+    default: "",
+  },
+});
+
+const bgImage = {
+  "background-position": "center center",
+  "background-size": "cover",
+  "background-image": `url(${getImage(props.pageImage)})`,
 };
+
+function getImage(file) {
+  const imageURL = file;
+  return imageURL;
+}
 </script>

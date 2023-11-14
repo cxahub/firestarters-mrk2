@@ -1,13 +1,5 @@
 <template>
   <div>
-    <!--
-    <NuxtImg
-      src="/images/svg/benefit-calculator-tool-card.svg"
-      loading="lazy"
-      class="w-full"
-      aria-label="Tool image"
-    />
-    -->
     <img
       src="/images/svg/benefit-calculator-tool-card.png"
       loading="lazy"

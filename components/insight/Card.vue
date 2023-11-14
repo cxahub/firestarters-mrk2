@@ -1,6 +1,6 @@
 <template>
   <div class="grid grid-cols-1">
-    <div v-if="insights.length == 0" class="py-4">
+    <div v-if="insights.length == 0" class="py-4 text-fs-red">
       <div>No results found, please modify your search.</div>
     </div>
     <div
@@ -13,7 +13,7 @@
       <div class="col-span-2">
         <div class="py-4 font-bold">
           Total Insights by Industry:
-          <span class="text-fs-red">{{ insights.length - 1 }}</span>
+          <span class="text-fs-red">{{ insights.length }}</span>
         </div>
       </div>
       <div v-for="insight in insights" :key="insight.id">
@@ -21,14 +21,6 @@
           <NuxtLink
             :to="`/insights/${insight.c_id}/${insight.c_canonical_title}`"
           >
-            <!--  
-          <NuxtImg
-              :src="getImage(insight.imgt_path, insight.img_file)"
-              loading="lazy"
-              class="block rounded-lg"
-              aria-label="insight image"
-            />
-          -->
             <img
               :src="getImage(insight.imgt_path, insight.img_file)"
               loading="lazy"
@@ -49,16 +41,25 @@
           <UiTags :tags="insight.c_tag" class="py-2" />
 
           <!--Insight industry-->
-          <div class="py-4">
-            {{ insight.i_name }}
-          </div>
+          <InsightIndustryRel :insightID="parseInt(insight.c_id)" />
 
           <!--Insight caption-->
           <div class="py-4">
             {{ insight.c_caption }}
           </div>
 
-          <div class="py-4">
+          <!--Insight author and date info-->
+          <SocialUser
+            :userID="parseInt(insight.author_user_id)"
+            :imgtPath="insight.author_imgt_path"
+            :imgFile="insight.author_img_file"
+            :authorFirstName="insight.author_first_name"
+            :authorLastName="insight.author_last_name"
+            :datePosted="insight.c_date_posted"
+            :readTime="insight.c_read_time"
+          />
+
+          <div class="block float-left w-full pt-8 pb-4">
             <div class="block float-left py-4 pr-2">
               <UiButton
                 text="Insight Details"
@@ -82,71 +83,56 @@
   </div>
 </template>
 
-<script>
-import moment from "moment";
+<script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
+const { $dateFormat } = useNuxtApp();
 
-export default {
-  created: function () {
-    this.moment = moment;
+const props = defineProps({
+  insightsPath: {
+    type: String,
   },
-
-  props: {
-    kw: { type: String },
-    industry: { type: Number },
+  kw: {
+    type: String,
   },
-
-  async setup(props) {
-    //Get runtime config.
-    const config = useRuntimeConfig();
-
-    function dateFormat(value) {
-      return moment(value).format(config.public.DATEFORMAT);
-    }
-
-    const kw = ref(props.kw);
-    const industry = ref(props.industry);
-
-    const { data: insights } = await useAsyncData(
-      "insights",
-      () =>
-        $fetch(`/${config.public.API_CONTENT_ROUTE}`, {
-          method: "GET",
-          baseURL: config.public.API_URL,
-          params: {
-            c_date_gte: dateFormat(Date.now()),
-            c_date_exp: dateFormat(Date.now()),
-            status_id: 1,
-            order_by: "c_date_posted DESC",
-          },
-        }),
-      {
-        watch: [kw, industry],
-      }
-    );
-
-    return {
-      config,
-      insights,
-    };
+  industry: {
+    type: Number,
   },
+});
 
-  data() {
-    return {};
-  },
+//Transition prop to reactive var.
+const insightAPIPath = toRef(props, "insightsPath");
+const kws = toRef(props, "kw");
+const industrys = toRef(props, "industry");
 
-  methods: {
-    getImage(path, file) {
-      const imageURL =
-        this.config.public.CDN_URL +
-        "/" +
-        this.config.public.CDN_REPOSITORY_PATH +
-        "/image/" +
-        path +
-        "/" +
-        file;
+const { data: insights } = await useAsyncData(
+  "insights",
+  () =>
+    $fetch(insightAPIPath.value, {
+      params: {
+        kw: kws.value,
+        i_id: industrys.value,
+        c_date_gte: $dateFormat(Date.now()),
+        c_date_exp: $dateFormat(Date.now()),
+        status_id: 1,
+        order_by: "c_date_posted DESC",
+      },
+    }),
+  {
+    watch: [kws, industrys],
+  }
+);
 
-      return imageURL;
-    },
-  },
-};
+function getImage(path, file) {
+  const imageURL =
+    config.public.CDN_URL +
+    "/" +
+    config.public.CDN_REPOSITORY_PATH +
+    "/image/" +
+    path +
+    "/" +
+    file;
+
+  return imageURL;
+}
 </script>

@@ -17,18 +17,12 @@
   </div>
 </template>
 
-<script>
-import bgImage from "/images/bg/bg-texture-07.png";
+<script setup>
+import bgImageFile from "/images/bg/bg-texture-07.png";
 
-export default {
-  data() {
-    return {
-      bgImage: {
-        "background-position": "center center",
-        "background-size": "cover",
-        "background-image": `url(${bgImage})`,
-      },
-    };
-  },
+const bgImage = {
+  "background-position": "center center",
+  "background-size": "cover",
+  "background-image": `url(${bgImageFile})`,
 };
 </script>

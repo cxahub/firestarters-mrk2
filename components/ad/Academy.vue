@@ -7,14 +7,7 @@
       <h1 class="text-4xl font-bold text-white capitalize">Learn & Earn</h1>
     </div>
     <div class="py-4 text-xl text-white">Members Earn Digital Badges</div>
-    <!--
-    <NuxtImg
-      src="/images/logo/firestarters-academy-logo-reversed-275px.png"
-      loading="lazy"
-      class="w-full"
-      aria-label="Tool image"
-    />
-    -->
+
     <img
       src="/images/logo/firestarters-academy-logo-reversed-275px.png"
       loading="lazy"
@@ -31,18 +24,12 @@
   </div>
 </template>
 
-<script>
-import bgImage from "/images/bg/bg-texture-05.png";
+<script setup>
+import bgImageFile from "/images/bg/bg-texture-05.png";
 
-export default {
-  data() {
-    return {
-      bgImage: {
-        "background-position": "center center",
-        "background-size": "cover",
-        "background-image": `url(${bgImage})`,
-      },
-    };
-  },
+const bgImage = {
+  "background-position": "center center",
+  "background-size": "cover",
+  "background-image": `url(${bgImageFile})`,
 };
 </script>

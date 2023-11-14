@@ -51,7 +51,7 @@
                   </h1>
                 </div>
 
-                <div class="py-4 mb-8">
+                <div class="block w-full py-4 mb-8">
                   <SocialUser
                     :userID="parseInt(insight.author_user_id)"
                     :imgtPath="insight.author_imgt_path"
@@ -61,20 +61,24 @@
                     :datePosted="insight.c_date_posted"
                     :readTime="insight.c_read_time"
                   />
+
+                  <div class="block float-right py-8">
+                    <InsightDocument
+                      :insightID="parseInt(insight.id)"
+                      size="small"
+                      format="primary"
+                    />
+                  </div>
                 </div>
 
-                <div class="py-4">
-                  <InsightDocument :insightID="parseInt(insight.id)" />
-                </div>
-
-                <div v-for="video in videos" :key="video.id">
+                <div v-for="video in videos" :key="video.id" class="pt-20">
                   <VideoPlayer
                     :videoSrc="video.vst_url + video.v_source_id"
                     :videoTitle="video.c_title"
                   />
                 </div>
 
-                <div class="py-8" v-html="insight.c_story"></div>
+                <div class="block py-16" v-html="insight.c_story"></div>
 
                 <div class="py-4">
                   <a href="#article" class="link">Top ▲</a> |

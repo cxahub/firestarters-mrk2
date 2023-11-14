@@ -14,7 +14,7 @@
           document.doc_file
         "
         target="_blank"
-        format="secondary"
+        :format="format"
         :size="size"
       />
     </div>
@@ -26,6 +26,7 @@ export default {
   props: {
     insightID: { type: Number },
     size: { type: String },
+    format: { type: String, default: "secondary" },
   },
 
   setup(props) {

@@ -1,14 +1,5 @@
 <template>
   <div>
-    <!--
-    <NuxtImg
-      role="img"
-      src="/images/svg/flash-tool-card.svg"
-      loading="lazy"
-      class="w-full"
-      aria-label="Tool image"
-    />
-    -->
     <img
       role="img"
       src="/images/svg/flash-tool-card.png"

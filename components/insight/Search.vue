@@ -16,7 +16,7 @@
           v-model="kw"
           aria-describedby="kwHelp"
           placeholder="Search"
-          @input="Update($event.target.value)"
+          @input="emitQueryKW($event.target.value)"
         />
       </div>
       <div>
@@ -24,7 +24,7 @@
           class="form-select rounded"
           v-model="industry"
           aria-describedby="industryHelp"
-          @change="$emit('update:industry', parseInt($event.target.value))"
+          @change="emitQueryIndustry(parseInt($event.target.value))"
         >
           <option value="0">{{ industrySelected }}</option>
           <option
@@ -40,40 +40,34 @@
   </div>
 </template>
 
-<script>
-import { defineEmits, ref } from "vue";
-export default {
-  setup() {
-    //Get runtime config.
-    const config = useRuntimeConfig();
+<script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
 
-    const emit = defineEmits(["change", "input"]);
+const emit = defineEmits(["change", "input"]);
 
-    const industry = ref(0);
-    const kw = ref("");
+const industry = ref(0);
+const kw = ref("");
 
-    function Update(event) {
-      emit("change", event);
-    }
+function emitQueryKW(value) {
+  kw.value = value;
+  emit("input", value);
+}
 
-    //Fetch data.
-    const { pending, data: industries } = useLazyFetch(
-      config.public.API_URL + "/" + config.public.API_INDUSTRY_ROUTE,
-      {
-        query: {
-          status_id: 1,
-        },
-      }
-    );
+function emitQueryIndustry(value) {
+  industry.value = value;
+  emit("change", value);
+}
 
-    return { industries, industry, kw, pending };
-  },
+//Fetch data.
+const { pending, data: industries } = useLazyFetch(
+  config.public.API_URL + "/" + config.public.API_INDUSTRY_ROUTE,
+  {
+    query: {
+      status_id: 1,
+    },
+  }
+);
 
-  data() {
-    return {
-      industrySelected: "All Industries",
-      result: "",
-    };
-  },
-};
+const industrySelected = "All Industries";
 </script>

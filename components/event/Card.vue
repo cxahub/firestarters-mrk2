@@ -27,14 +27,6 @@
         <div v-for="event in events" :key="event.id">
           <div>
             <NuxtLink :to="`/events/${event.id}/${event.e_canonical_title}`">
-              <!--
-              <NuxtImg
-                :src="getImage(event.imgt_path, event.img_file)"
-                loading="lazy"
-                class="block rounded-lg"
-                aria-label="event image"
-              />
-              -->
               <img
                 :src="getImage(event.imgt_path, event.img_file)"
                 loading="lazy"
@@ -63,7 +55,7 @@
             <div class="font-bold py-4">
               <span v-if="event.e_city !== '' && event.e_city !== null"
                 >{{ event.e_city }} - </span
-              >{{ event.edt_name }} - {{ dateFormat(event.e_date) }}
+              >{{ event.edt_name }} - {{ $dateFormat(event.e_date) }}
             </div>
 
             <!--Event notes-->
@@ -98,73 +90,42 @@
   </div>
 </template>
 
-<script>
-import moment from "moment";
+<script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
+const { $dateFormat } = useNuxtApp();
 
-export default {
-  created: function () {
-    this.moment = moment;
+const props = defineProps({
+  etID: {
+    type: Number,
+    default: 2,
   },
+});
 
-  props: {
-    etID: { type: Number, default: 2 },
-  },
-
-  setup(props) {
-    //Get runtime config.
-    const config = useRuntimeConfig();
-
-    function dateFormat(value) {
-      return moment(value).format(config.public.DATEFORMAT);
-    }
-
-    //Fetch data.
-    const { pending, data: events } = useLazyFetch(
-      config.public.API_URL + "/" + config.public.API_EVENT_ROUTE,
-      {
-        query: {
-          et_id: parseInt(props.etID),
-          e_date_gte: dateFormat(Date.now()),
-          e_date_exp: dateFormat(Date.now()),
-          status_id: 1,
-          order_by: "e_date ASC",
-        },
-      }
-    );
-    return {
-      config,
-      events,
-      pending,
-    };
-  },
-
-  data() {
-    return {};
-  },
-
-  methods: {
-    dateFormat(value) {
-      return moment(value).format(this.dateFormatter);
+//Fetch data.
+const { pending, data: events } = useLazyFetch(
+  config.public.API_URL + "/" + config.public.API_EVENT_ROUTE,
+  {
+    query: {
+      et_id: parseInt(props.etID),
+      e_date_gte: $dateFormat(Date.now()),
+      e_date_exp: $dateFormat(Date.now()),
+      status_id: 1,
+      order_by: "e_date ASC",
     },
+  }
+);
 
-    getImage(path, file) {
-      const imageURL =
-        this.config.public.CDN_URL +
-        "/" +
-        this.config.public.CDN_REPOSITORY_PATH +
-        "/image/" +
-        path +
-        "/" +
-        file;
+function getImage(path, file) {
+  const imageURL =
+    this.config.public.CDN_URL +
+    "/" +
+    this.config.public.CDN_REPOSITORY_PATH +
+    "/image/" +
+    path +
+    "/" +
+    file;
 
-      return imageURL;
-    },
-  },
-
-  computed: {
-    dateFormatter() {
-      return this.$config.public.DATEFORMAT;
-    },
-  },
-};
+  return imageURL;
+}
 </script>
