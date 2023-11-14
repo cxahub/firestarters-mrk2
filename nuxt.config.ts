@@ -4,7 +4,15 @@ export default defineNuxtConfig({
     port: 4001,
   },
   experimental: { payloadExtraction: false },
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-fonts", "@nuxt/image"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/google-fonts",
+    "@nuxt/image",
+    "nuxt-gtag",
+  ],
+  gtag: {
+    id: "G-GZH6M6GVV0",
+  },
   image: {
     dir: "public",
   },

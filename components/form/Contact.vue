@@ -3,49 +3,13 @@
     <div>
       <div v-if="result">{{ message }}</div>
       <div>
-        <VForm
-          class=""
-          :validation-schema="schema"
-          :initial-values="initialValues"
-          v-slot="{ meta: formMeta }"
-          @submit="handleSubmit"
-        >
-          <FormVTextInput
-            type="text"
-            name="name"
-            label="Full Name"
-            placeholder="Full Name"
-          />
-
-          <FormVTextInput
-            type="email"
-            name="email"
-            label="Email"
-            placeholder="Email"
-          />
-
-          <FormVTextArea
-            name="message"
-            label="Message"
-            placeholder="Enter a message"
-          />
-
-          <UiButton
-            role="button"
-            text="Send Message"
-            type="submit"
-            :disabled="!formMeta.valid"
-          />
-        </VForm>
+        <UiButton role="button" text="Send Message" type="submit" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { object, string, ref as yupRef } from "yup";
-import { configure } from "vee-validate";
-
 //Get runtime config.
 const config = useRuntimeConfig();
 
@@ -82,19 +46,4 @@ async function formRequest(values) {
     }
   );
 }
-
-configure({
-  validateOnBlur: true, // controls if `blur` events should trigger validation with `handleChange` handler
-  validateOnChange: true, // controls if `change` events should trigger validation with `handleChange` handler
-  validateOnInput: false, // controls if `input` events should trigger validation with `handleChange` handler
-  validateOnModelUpdate: true, // controls if `update:modelValue` events should trigger validation with `handleChange` handler
-});
-
-const schema = object({
-  name: string().required().label("Full Name"),
-  email: string().required().email().label("Email Address"),
-  message: string().required().label("Message"),
-});
-
-const initialValues = { name: "", email: "", message: "" };
 </script>

@@ -8,30 +8,22 @@
   <main class="container mx-auto py-8">Register Page</main>
 </template>
 
-<script>
+<script setup>
 //Import image(s).
-import pageImage from "/images/banner/page-banner-contact.jpg";
+import pageImageFile from "/images/banner/page-banner-contact.jpg";
 
-export default {
-  setup() {
-    useHead({
-      title: "Regsiter - Firestarters",
-      meta: [
-        {
-          name: "description",
-          content:
-            "A team of advisors with proven track records of running and building omnichannel businesses as executives in your industry.",
-        },
-      ],
-    });
-  },
-  data() {
-    return {
-      pageImage: pageImage,
-      pageTitle: "Register Now",
-      pageSubTitle: "Register to Join Our Team of Industry Leaders",
-      pageMessage: "",
-    };
-  },
-};
+useHead({
+  title: "Regsiter - Firestarters",
+  meta: [
+    {
+      name: "description",
+      content:
+        "A team of advisors with proven track records of running and building omnichannel businesses as executives in your industry.",
+    },
+  ],
+});
+const pageImage = ref(pageImageFile);
+const pageTitle = ref("Register Now");
+const pageSubTitle = ref("Register to Join Our Team of Industry Leaders");
+const pageMessage = ref("");
 </script>

@@ -43,12 +43,14 @@ useHead({
   ],
 });
 
-const pageImage = pageImageFile;
-const pageTitle =
-  "Discover Whats Happening Around <span class='text-fs-yellow'>You.</span>";
-const pageSubTitle = "Submit Your Insights";
-const pageMessage =
-  "Members are welcome at anytime to jump on the site and review content and (coming soon) submit your own articles, best practices, and engage with other members.";
+const pageImage = ref(pageImageFile);
+const pageTitle = ref(
+  "Discover Whats Happening Around <span class='text-fs-yellow'>You.</span>"
+);
+const pageSubTitle = ref("Submit Your Insights");
+const pageMessage = ref(
+  "Members are welcome at anytime to jump on the site and review content and (coming soon) submit your own articles, best practices, and engage with other members."
+);
 let kw = ref("");
 let industry = ref(0);
 let insightsPath = ref(

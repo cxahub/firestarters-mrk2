@@ -30,30 +30,25 @@
   </main>
 </template>
 
-<script>
+<script setup>
 //Import image(s).
-import pageImage from "/images/banner/page-banner-contact.jpg";
+import pageImageFile from "/images/banner/page-banner-contact.jpg";
 
-export default {
-  setup() {
-    useHead({
-      title: "Contact Us - Firestarters",
-      meta: [
-        {
-          name: "description",
-          content:
-            "A global gathering of people that have Customer Experience in their DNA and want to exchange together in a safe and open environment. Think about a group of friends & colleagues that share a hobby and meet regularly to discuss the latest developments, points of views and seek advice from each other on a number of business topics.",
-        },
-      ],
-    });
-  },
-  data() {
-    return {
-      pageImage: pageImage,
-      pageTitle: "Contact Us",
-      pageSubTitle: "We're Here For You!",
-      pageMessage: "Please allow for 2 -3 business days for us to respond.",
-    };
-  },
-};
+useHead({
+  title: "Contact Us - Firestarters",
+  meta: [
+    {
+      name: "description",
+      content:
+        "A global gathering of people that have Customer Experience in their DNA and want to exchange together in a safe and open environment. Think about a group of friends & colleagues that share a hobby and meet regularly to discuss the latest developments, points of views and seek advice from each other on a number of business topics.",
+    },
+  ],
+});
+
+const pageImage = ref(pageImageFile);
+const pageTitle = ref("Contact Us");
+const pageSubTitle = ref("We're Here For You!");
+const pageMessage = ref(
+  "Please allow for 2 -3 business days for us to respond."
+);
 </script>

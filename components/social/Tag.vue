@@ -77,22 +77,15 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    title: { type: String, default: "" },
-    caption: { type: String, default: "" },
-    showShare: { type: Boolean },
-    showTwitter: { type: Boolean },
-    showFacebook: { type: Boolean },
-    showLinkedIn: { type: Boolean },
-  },
+<script setup>
+const props = defineProps({
+  title: { type: String, default: "" },
+  caption: { type: String, default: "" },
+  showShare: { type: Boolean },
+  showTwitter: { type: Boolean },
+  showFacebook: { type: Boolean },
+  showLinkedIn: { type: Boolean },
+});
 
-  setup() {
-    const host = useRequestURL().origin + useRequestURL().pathname;
-    return {
-      host,
-    };
-  },
-};
+const host = ref(useRequestURL().origin + useRequestURL().pathname);
 </script>

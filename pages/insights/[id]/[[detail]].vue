@@ -112,63 +112,45 @@
   </div>
 </template>
 
-<script>
-export default {
-  setup() {
-    //Get runtime config.
-    const config = useRuntimeConfig();
-    const route = useRoute();
-    const host = useRequestURL().origin + useRequestURL().pathname;
+<script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
+const route = useRoute();
+const host = ref(useRequestURL().origin + useRequestURL().pathname);
 
-    //Fetch data.
-    const { pending, data: insights } = useLazyFetch(
-      config.public.API_URL + "/" + config.public.API_CONTENT_ROUTE,
-      {
-        query: {
-          id: route.params.id,
-          status_id: 1,
-        },
-      }
-    );
-
-    //Fetch video data.
-    const { pending: pending2, data: videos } = useLazyFetch(
-      config.public.API_URL +
-        "/" +
-        config.public.API_CONTENT_VIDEO_REL_ROUTE +
-        "/?c_id=" +
-        route.params.id
-    );
-
-    const feedbackURL = config.public.FIRESTARTERS_FEEDBACK_SURVEY_URL;
-
-    return {
-      config,
-      insights,
-      videos,
-      feedbackURL,
-      host,
-    };
-  },
-
-  data() {
-    return {
-      showTitle: 0,
-    };
-  },
-
-  methods: {
-    handleScroll() {
-      this.showTitle = window.scrollY;
+//Fetch data.
+const { pending, data: insights } = useLazyFetch(
+  config.public.API_URL + "/" + config.public.API_CONTENT_ROUTE,
+  {
+    query: {
+      id: route.params.id,
+      status_id: 1,
     },
-  },
+  }
+);
 
-  beforeMount() {
-    window.addEventListener("scroll", this.handleScroll);
-  },
+//Fetch video data.
+const { pending: pending2, data: videos } = useLazyFetch(
+  config.public.API_URL +
+    "/" +
+    config.public.API_CONTENT_VIDEO_REL_ROUTE +
+    "/?c_id=" +
+    route.params.id
+);
 
-  beforeDestroy() {
-    window.removeEventListener("scroll", this.handleScroll);
-  },
-};
+const feedbackURL = config.public.FIRESTARTERS_FEEDBACK_SURVEY_URL;
+
+const showTitle = ref(0);
+
+function handleScroll() {
+  showTitle.value = window.scrollY;
+}
+
+function beforeMount() {
+  window.addEventListener("scroll", handleScroll());
+}
+
+function beforeDestroy() {
+  window.removeEventListener("scroll", handleScroll());
+}
 </script>

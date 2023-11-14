@@ -39,59 +39,46 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    ref_id: {
-      type: Number,
-      default: 0,
+<script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
+
+const props = defineProps({
+  ref_id: {
+    type: Number,
+    default: 0,
+  },
+});
+
+//Fetch data.
+const { pending, data: analyticsPageView } = useLazyFetch(
+  config.public.API_URL + "/" + config.public.API_ANALYTICS_PAGE_VIEW_ROUTE,
+  {
+    query: {
+      ref_id: props.ref_id,
     },
-  },
+  }
+);
 
-  setup(props) {
-    //Get runtime config.
-    const config = useRuntimeConfig();
+//Fetch data.
+const { pending: pending2, data: userCommentStats } = useLazyFetch(
+  config.public.API_URL + "/" + config.public.API_USER_COMMENT_ROUTE,
+  {
+    query: {
+      ref_id: props.ref_id,
+      uct_id: 1,
+      status_id: 1,
+    },
+  }
+);
 
-    //Fetch data.
-    const { pending, data: analyticsPageView } = useLazyFetch(
-      config.public.API_URL + "/" + config.public.API_ANALYTICS_PAGE_VIEW_ROUTE,
-      {
-        query: {
-          ref_id: props.ref_id,
-        },
-      }
-    );
-
-    //Fetch data.
-    const { pending: pending2, data: userCommentStats } = useLazyFetch(
-      config.public.API_URL + "/" + config.public.API_USER_COMMENT_ROUTE,
-      {
-        query: {
-          ref_id: props.ref_id,
-          uct_id: 1,
-          status_id: 1,
-        },
-      }
-    );
-
-    function UserStats() {
-      this.likeCount = 0;
-      this.shareCount = 0;
-      for (let i = 0; i < this.userCommentStats.length; i++) {
-        this.likeCount += parseInt(this.userCommentStats[i].uc_like_count);
-        this.shareCount += parseInt(this.userCommentStats[i].uc_share_count);
-      }
-      return [this.likeCount, this.shareCount];
-    }
-
-    return {
-      config,
-      analyticsPageView,
-      userCommentStats,
-      UserStats,
-      pending,
-      pending2,
-    };
-  },
-};
+function UserStats() {
+  this.likeCount = 0;
+  this.shareCount = 0;
+  for (let i = 0; i < this.userCommentStats.length; i++) {
+    this.likeCount += parseInt(this.userCommentStats[i].uc_like_count);
+    this.shareCount += parseInt(this.userCommentStats[i].uc_share_count);
+  }
+  return [this.likeCount, this.shareCount];
+}
 </script>

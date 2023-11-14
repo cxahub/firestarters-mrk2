@@ -36,24 +36,18 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import diamondIcon from "/images/svg/diamond-icon.svg";
 import flashIcon from "/images/svg/flash-bolt-icon.svg";
 
-export default {
-  props: {
-    text: { type: String },
-    type: { type: String, default: "h1" },
-    color: { type: String, default: "text-black" },
-    icon: { type: String, default: diamondIcon },
-  },
+const props = defineProps({
+  text: { type: String },
+  type: { type: String, default: "h1" },
+  color: { type: String, default: "text-black" },
+  icon: { type: String, default: diamondIcon },
+});
 
-  data() {
-    return {
-      bgImage: {
-        "background-image": `url(${this.icon})`,
-      },
-    };
-  },
+const bgImage = {
+  "background-image": `url(${props.icon})`,
 };
 </script>

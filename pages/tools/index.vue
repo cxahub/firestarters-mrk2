@@ -203,6 +203,9 @@
 </template>
 
 <script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
+
 //Import image(s).
 import pageImage from "/images/banner/page-banner-tools.jpg";
 import flashIcon from "/images/svg/flash-bolt-icon.svg";
@@ -222,9 +225,6 @@ const props = defineProps({
   },
 });
 
-//Configuation.
-const config = useRuntimeConfig();
-
 useHead({
   title: "Tools - Firestarters",
   meta: [
@@ -236,5 +236,5 @@ useHead({
   ],
 });
 
-const flashWebsiteURL = config.public.FLASH_WEBSITE_URL;
+const flashWebsiteURL = ref(config.public.FLASH_WEBSITE_URL);
 </script>

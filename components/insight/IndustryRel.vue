@@ -24,34 +24,23 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    insightID: { type: Number },
-    color: { type: Boolean },
-  },
+<script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
 
-  setup(props) {
-    //Get runtime config.
-    const config = useRuntimeConfig();
+const props = defineProps({
+  insightID: { type: Number },
+  color: { type: Boolean },
+});
 
-    //Fetch data.
-    const { pending, data: insightsIndustryRel } = useLazyFetch(
-      config.public.API_URL +
-        "/" +
-        config.public.API_CONTENT_INDUSTRY_REL_ROUTE,
-      {
-        query: {
-          c_id: parseInt(props.insightID),
-          status_id: 1,
-        },
-      }
-    );
-    return {
-      config,
-      insightsIndustryRel,
-      pending,
-    };
-  },
-};
+//Fetch data.
+const { pending, data: insightsIndustryRel } = useLazyFetch(
+  config.public.API_URL + "/" + config.public.API_CONTENT_INDUSTRY_REL_ROUTE,
+  {
+    query: {
+      c_id: parseInt(props.insightID),
+      status_id: 1,
+    },
+  }
+);
 </script>

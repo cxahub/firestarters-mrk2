@@ -74,31 +74,25 @@
   </main>
 </template>
 
-<script>
+<script setup>
 //Import image(s).
-import pageImage from "/images/banner/page-banner-cxa.jpg";
+import pageImageFile from "/images/banner/page-banner-cxa.jpg";
 
-export default {
-  setup() {
-    useHead({
-      title: "CXA - Firestarters",
-      meta: [
-        {
-          name: "description",
-          content:
-            "A team of advisors with proven track records of running and building omnichannel businesses as executives in your industry.",
-        },
-      ],
-    });
-  },
-  data() {
-    return {
-      pageImage: pageImage,
-      pageTitle: "Your <span class='text-fs-yellow'>CX Advisors</span>",
-      pageSubTitle: "Who are we exactly?",
-      pageMessage:
+useHead({
+  title: "CXA - Firestarters",
+  meta: [
+    {
+      name: "description",
+      content:
         "A team of advisors with proven track records of running and building omnichannel businesses as executives in your industry.",
-    };
-  },
-};
+    },
+  ],
+});
+
+const pageImage = ref(pageImageFile);
+const pageTitle = ref("Your <span class='text-fs-yellow'>CX Advisors</span>");
+const pageSubTitle = ref("Who are we exactly?");
+const pageMessage = ref(
+  "A team of advisors with proven track records of running and building omnichannel businesses as executives in your industry."
+);
 </script>

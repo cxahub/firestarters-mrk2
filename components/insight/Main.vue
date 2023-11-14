@@ -13,15 +13,6 @@
             <NuxtLink
               :to="`/insights/${insight.c_id}/${insight.c_canonical_title}`"
             >
-              <!--  
-            <NuxtImg
-                role="img"
-                loading="lazy"
-                :src="getImage(insight.imgt_path, insight.img_file)"
-                class="block rounded-lg w-full"
-                aria-label="insight image"
-              />
-            -->
               <img
                 role="img"
                 loading="lazy"
@@ -91,64 +82,34 @@
   </div>
 </template>
 
-<script>
-import moment from "moment";
+<script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
+const { $dateFormat } = useNuxtApp();
 
-export default {
-  setup() {
-    //Get runtime config.
-    const config = useRuntimeConfig();
-
-    function dateFormat(value) {
-      return moment(value).format(config.public.DATEFORMAT);
-    }
-
-    //Fetch data.
-    const { pending, data: insights } = useLazyFetch(
-      config.public.API_URL + "/" + config.public.API_CONTENT_ROUTE,
-      {
-        query: {
-          c_date_gte: dateFormat(Date.now()),
-          c_date_exp: dateFormat(Date.now()),
-          status_id: 1,
-          order_by: "c_date_posted DESC",
-        },
-      }
-    );
-    return {
-      config,
-      insights,
-      pending,
-    };
-  },
-
-  data() {
-    return {};
-  },
-
-  methods: {
-    dateFormat(value) {
-      return moment(value).format(this.dateFormatter);
+//Fetch data.
+const { pending, data: insights } = useLazyFetch(
+  config.public.API_URL + "/" + config.public.API_CONTENT_ROUTE,
+  {
+    query: {
+      c_date_gte: $dateFormat(Date.now()),
+      c_date_exp: $dateFormat(Date.now()),
+      status_id: 1,
+      order_by: "c_date_posted DESC",
     },
+  }
+);
 
-    getImage(path, file) {
-      const imageURL =
-        this.config.public.CDN_URL +
-        "/" +
-        this.config.public.CDN_REPOSITORY_PATH +
-        "/image/" +
-        path +
-        "/" +
-        file;
+function getImage(path, file) {
+  const imageURL =
+    config.public.CDN_URL +
+    "/" +
+    config.public.CDN_REPOSITORY_PATH +
+    "/image/" +
+    path +
+    "/" +
+    file;
 
-      return imageURL;
-    },
-  },
-
-  computed: {
-    dateFormatter() {
-      return this.$config.public.DATEFORMAT;
-    },
-  },
-};
+  return imageURL;
+}
 </script>

@@ -15,30 +15,23 @@
   </main>
 </template>
 
-<script>
+<script setup>
 //Import image(s).
-import pageImage from "/images/banner/page-banner-academy-badge.jpg";
+import pageImageFile from "/images/banner/page-banner-academy-badge.jpg";
 
-export default {
-  setup() {
-    useHead({
-      title: "Academy Badge - Firestarters",
-      meta: [
-        {
-          name: "description",
-          content:
-            "As a member you are able to earn a badge and develop your path to certification.",
-        },
-      ],
-    });
-  },
-  data() {
-    return {
-      pageImage: pageImage,
-      pageTitle: "XXX <span class='text-fs-yellow'>XXX</span>",
-      pageSubTitle: "XXX",
-      pageMessage: "XXX",
-    };
-  },
-};
+useHead({
+  title: "Academy Badge - Firestarters",
+  meta: [
+    {
+      name: "description",
+      content:
+        "As a member you are able to earn a badge and develop your path to certification.",
+    },
+  ],
+});
+
+const pageImage = ref(pageImageFile);
+const pageTitle = ref("XXX <span class='text-fs-yellow'>XXX</span>");
+const pageSubTitle = ref("XXX");
+const pageMessage = ref("XXX");
 </script>

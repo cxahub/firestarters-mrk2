@@ -19,12 +19,10 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    videoSrc: String,
-    videoTitle: String,
-    videoDisplay: String,
-  },
-};
+<script setup>
+const props = defineProps({
+  videoSrc: String,
+  videoTitle: String,
+  videoDisplay: String,
+});
 </script>

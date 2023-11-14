@@ -8,15 +8,6 @@
   <main class="container mx-auto py-8">
     <div class="grid grid-cols-1 py-4">
       <div>
-        <!--
-        <NuxtImg
-          role="img"
-          class="w-1/3"
-          src="/images/logo/firestarters-academy-logo-275px.png"
-          loading="lazy"
-          aria-label="Firestarters Academy Logo"
-        />
-        -->
         <img
           role="img"
           class="w-1/3"
@@ -103,32 +94,27 @@
   </main>
 </template>
 
-<script>
+<script setup>
 //Import image(s).
-import pageImage from "/images/banner/page-banner-academy.jpg";
+import pageImageFile from "/images/banner/page-banner-academy.jpg";
 
-export default {
-  setup() {
-    useHead({
-      title: "Academy - Firestarters",
-      meta: [
-        {
-          name: "description",
-          content:
-            "Members are able to expand your knowledge and energize your business.  Earn a badge and develop your path to certification.",
-        },
-      ],
-    });
-  },
-  data() {
-    return {
-      pageImage: pageImage,
-      pageTitle:
-        "Discover Our Virtual & <span class='text-fs-yellow'>Live Courses.</span>",
-      pageSubTitle: "Be More Effective",
-      pageMessage:
-        "Members are able to expand your knowledge and energize your business.  Earn a badge and develop your path to certification​.",
-    };
-  },
-};
+useHead({
+  title: "Academy - Firestarters",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Members are able to expand your knowledge and energize your business.  Earn a badge and develop your path to certification.",
+    },
+  ],
+});
+
+const pageImage = ref(pageImageFile);
+const pageTitle = ref(
+  "Discover Our Virtual & <span class='text-fs-yellow'>Live Courses.</span>"
+);
+const pageSubTitle = ref("Be More Effective");
+const pageMessage = ref(
+  "Members are able to expand your knowledge and energize your business.  Earn a badge and develop your path to certification​."
+);
 </script>

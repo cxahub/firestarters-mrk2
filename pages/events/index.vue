@@ -13,32 +13,26 @@
   </main>
 </template>
 
-<script>
+<script setup>
 //Import image(s).
-import pageImage from "/images/banner/page-banner-events.jpg";
+import pageImageFile from "/images/banner/page-banner-events.jpg";
 
-export default {
-  setup() {
-    useHead({
-      title: "Events - Firestarters",
-      meta: [
-        {
-          name: "description",
-          content:
-            "Members of the community will have an opportunity to connect with each other on various CX topics and build a network of like-minded colleagues to collectively define what a great customer experience can be.",
-        },
-      ],
-    });
-  },
-  data() {
-    return {
-      pageImage: pageImage,
-      pageTitle:
-        "Discover our Virtual & <span class='text-fs-yellow'>Live Events</span>",
-      pageSubTitle: "Why Join Us Live?",
-      pageMessage:
+useHead({
+  title: "Events - Firestarters",
+  meta: [
+    {
+      name: "description",
+      content:
         "Members of the community will have an opportunity to connect with each other on various CX topics and build a network of like-minded colleagues to collectively define what a great customer experience can be.",
-    };
-  },
-};
+    },
+  ],
+});
+const pageImage = ref(pageImageFile);
+const pageTitle = ref(
+  "Discover our Virtual & <span class='text-fs-yellow'>Live Events</span>"
+);
+const pageSubTitle = ref("Why Join Us Live?");
+const pageMessage = ref(
+  "Members of the community will have an opportunity to connect with each other on various CX topics and build a network of like-minded colleagues to collectively define what a great customer experience can be."
+);
 </script>

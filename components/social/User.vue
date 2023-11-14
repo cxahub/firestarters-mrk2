@@ -49,7 +49,7 @@
         >
       </div>
       <div v-if="datePosted != ''">
-        Posted: <span class="font-bold">{{ dateFormat(datePosted) }}</span>
+        Posted: <span class="font-bold">{{ $dateFormat(datePosted) }}</span>
       </div>
       <div v-if="readTime != ''">
         Read Time: <span class="font-bold">{{ readTime }}</span>
@@ -58,70 +58,48 @@
   </div>
 </template>
 
-<script>
-import moment from "moment";
+<script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
 
-export default {
-  props: {
-    userID: { type: Number, default: 0 },
-    imgtPath: { type: String, default: "user" },
-    imgFile: { type: String, default: "avatar-default.png" },
-    imgSize: { type: String, default: "large" },
-    authorFirstName: { type: String, default: "" },
-    authorLastName: { type: String, default: "" },
-    datePosted: { type: String, default: "" },
-    readTime: { type: String, default: "" },
-    color: { type: Boolean, default: false },
-  },
+const props = defineProps({
+  userID: { type: Number, default: 0 },
+  imgtPath: { type: String, default: "user" },
+  imgFile: { type: String, default: "avatar-default.png" },
+  imgSize: { type: String, default: "large" },
+  authorFirstName: { type: String, default: "" },
+  authorLastName: { type: String, default: "" },
+  datePosted: { type: String, default: "" },
+  readTime: { type: String, default: "" },
+  color: { type: Boolean, default: false },
+});
 
-  setup(props) {
-    //Get runtime config.
-    const config = useRuntimeConfig();
+//Fetch data.
+const { pending, data: userFieldRel } = useLazyFetch(
+  config.public.API_URL +
+    "/" +
+    config.public.API_USER_FIELD_REL_ROUTE +
+    "/?user_id=" +
+    props.userID +
+    "&uf_id=1"
+);
 
-    //Fetch data.
-    const { pending, data: userFieldRel } = useLazyFetch(
-      config.public.API_URL +
-        "/" +
-        config.public.API_USER_FIELD_REL_ROUTE +
-        "/?user_id=" +
-        props.userID +
-        "&uf_id=1"
-    );
-    return {
-      config,
-      userFieldRel,
-      pending,
-    };
-  },
-  methods: {
-    dateFormat(value) {
-      return moment(value).format(this.dateFormatter);
-    },
+function getImage(path, file) {
+  let imageURL =
+    config.public.CDN_URL +
+    "/" +
+    config.public.CDN_REPOSITORY_PATH +
+    "/image/" +
+    path +
+    "/" +
+    file;
 
-    getImage(path, file) {
-      let imageURL =
-        this.config.public.CDN_URL +
-        "/" +
-        this.config.public.CDN_REPOSITORY_PATH +
-        "/image/" +
-        path +
-        "/" +
-        file;
+  if (imageURL.includes("null")) {
+    imageURL = "/images/cxa/avatar.png";
+  }
 
-      if (imageURL.includes("null")) {
-        imageURL = "/images/cxa/avatar.png";
-      }
-
-      return imageURL;
-    },
-  },
-
-  computed: {
-    dateFormatter() {
-      return this.$config.public.DATEFORMAT;
-    },
-  },
-};
+  return imageURL;
+}
 </script>
 
 <style scoped>

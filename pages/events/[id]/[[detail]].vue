@@ -36,7 +36,7 @@
           </div>
 
           <div class="py-2 font-bold text-lg">
-            {{ event.edt_name }} - {{ dateFormat(event.e_date) }}
+            {{ event.edt_name }} - {{ $dateFormat(event.e_date) }}
           </div>
 
           <div v-if="event.e_note != null" class="py-2 text-sm">
@@ -60,7 +60,7 @@
             <!--Event time & date-->
             <div class="py-2">
               <span class="text-lg font-bold">{{
-                dateFormat(event.e_date)
+                $dateFormat(event.e_date)
               }}</span>
               <br />
               {{ event.time_name_start }} - {{ event.time_name_end }} LT
@@ -95,7 +95,7 @@
 
           <div
             v-if="
-              dateNowFormat(event.e_date) > dateNowFormat(Date.now()) &&
+              $dateNowFormat(event.e_date) > $dateNowFormat(Date.now()) &&
               event.et_id != 4
             "
             class="py-4"
@@ -114,65 +114,30 @@
   </div>
 </template>
 
-<script>
-import moment from "moment";
+<script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
+const { $dateFormat, $dateNowFormat } = useNuxtApp();
+const route = useRoute();
+const host = ref(useRequestURL().origin + useRequestURL().pathname);
 
-export default {
-  setup() {
-    //Get runtime config.
-    const config = useRuntimeConfig();
-    const route = useRoute();
-    const host = useRequestURL().origin + useRequestURL().pathname;
-
-    //Fetch data.
-    const { pending, data: events } = useLazyFetch(
-      config.public.API_URL + "/" + config.public.API_EVENT_ROUTE,
-      {
-        query: {
-          id: route.params.id,
-          status_id: 1,
-        },
-      }
-    );
-
-    //Fetch data.
-    const { pending: pending2, data: schedules } = useLazyFetch(
-      config.public.API_URL +
-        "/" +
-        config.public.API_EVENT_ROUTE +
-        "-schedule-rel/?e_id" +
-        route.params.id
-    );
-
-    return {
-      config,
-      events,
-      schedules,
-      host,
-      pending,
-      pending2,
-    };
-  },
-
-  data() {
-    return {
-      showTitle: 0,
-    };
-  },
-
-  methods: {
-    dateFormat(value) {
-      return moment(value).format("dddd, DD MMMM");
+//Fetch data.
+const { pending, data: events } = useLazyFetch(
+  config.public.API_URL + "/" + config.public.API_EVENT_ROUTE,
+  {
+    query: {
+      id: route.params.id,
+      status_id: 1,
     },
-    dateNowFormat(value) {
-      return moment(value).format(this.dateFormatter);
-    },
-  },
+  }
+);
 
-  computed: {
-    dateFormatter() {
-      return this.$config.public.DATEFORMAT;
-    },
-  },
-};
+//Fetch data.
+const { pending: pending2, data: schedules } = useLazyFetch(
+  config.public.API_URL +
+    "/" +
+    config.public.API_EVENT_ROUTE +
+    "-schedule-rel/?e_id" +
+    route.params.id
+);
 </script>

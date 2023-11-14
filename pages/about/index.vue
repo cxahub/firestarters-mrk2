@@ -109,59 +109,43 @@
   </main>
 </template>
 
-<script>
-import moment from "moment";
+<script setup>
+//Get runtime config.
+const config = useRuntimeConfig();
+const { $dateFormat } = useNuxtApp();
 
 //Import image(s).
-import pageImage from "/images/banner/page-banner-about-us.jpg";
+import pageImageFile from "/images/banner/page-banner-about-us.jpg";
 
-export default {
-  setup() {
-    useHead({
-      title: "About Us - Firestarters",
-      meta: [
-        {
-          name: "description",
-          content:
-            "Create an exclusive member owned platform where business practitioners and leaders can expand their knowledge and edify each other through sharing insights, experiences, learnings, and perspectives.",
-        },
-      ],
-    });
-
-    //Get runtime config.
-    const config = useRuntimeConfig();
-
-    function dateFormat(value) {
-      return moment(value).format(config.public.DATEFORMAT);
-    }
-
-    //Fetch data.
-    const { pending, data: videos } = useLazyFetch(
-      config.public.API_URL + "/" + config.public.API_CONTENT_VIDEO_REL_ROUTE,
-      {
-        query: {
-          v_id: 2,
-          e_date_gte: dateFormat(Date.now()),
-          status_id: 1,
-        },
-      }
-    );
-    return {
-      config,
-      videos,
-      pending,
-    };
-  },
-
-  data() {
-    return {
-      pageImage: pageImage,
-      pageTitle:
-        "A truly global thought leadership <span class='text-fs-yellow'>community.</span>",
-      pageSubTitle: "Our Vision",
-      pageMessage:
+useHead({
+  title: "About Us - Firestarters",
+  meta: [
+    {
+      name: "description",
+      content:
         "Create an exclusive member owned platform where business practitioners and leaders can expand their knowledge and edify each other through sharing insights, experiences, learnings, and perspectives.",
-    };
-  },
-};
+    },
+  ],
+});
+
+//Fetch data.
+const { pending, data: videos } = useLazyFetch(
+  config.public.API_URL + "/" + config.public.API_CONTENT_VIDEO_REL_ROUTE,
+  {
+    query: {
+      v_id: 2,
+      e_date_gte: $dateFormat(Date.now()),
+      status_id: 1,
+    },
+  }
+);
+
+const pageImage = ref(pageImageFile);
+const pageTitle = ref(
+  "A truly global thought leadership <span class='text-fs-yellow'>community.</span>"
+);
+const pageSubTitle = ref("Our Vision");
+const pageMessage = ref(
+  "Create an exclusive member owned platform where business practitioners and leaders can expand their knowledge and edify each other through sharing insights, experiences, learnings, and perspectives."
+);
 </script>
