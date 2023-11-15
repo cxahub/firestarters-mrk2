@@ -7,15 +7,14 @@
   />
   <main class="container mx-auto py-8">
     <div class="grid grid-cols-1">
-      <div class="py-10">
-        <UiTitleIcon text="Title" />
-      </div>
-      <div>Text</div>
+      <AcademyBadgeList :token="token" />
+      <AcademyBadge />
     </div>
   </main>
 </template>
 
 <script setup>
+const route = useRoute();
 //Import image(s).
 import pageImageFile from "/images/banner/page-banner-academy-badge.jpg";
 
@@ -31,7 +30,10 @@ useHead({
 });
 
 const pageImage = ref(pageImageFile);
-const pageTitle = ref("XXX <span class='text-fs-yellow'>XXX</span>");
-const pageSubTitle = ref("XXX");
-const pageMessage = ref("XXX");
+const pageTitle = ref("Firestarters Academy Badges");
+const pageSubTitle = ref("Share your badge with your LinkedIn account");
+const pageMessage = ref(
+  "If you have been awarded a badge it should be available below."
+);
+const token = ref(route.query.token);
 </script>

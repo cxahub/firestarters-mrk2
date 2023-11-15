@@ -23,6 +23,7 @@
     "@nuxtjs/tailwindcss": "^6.1.3",
     "moment": "^2.29.4",
     "nuxt-gtag": "^1.1.1",
+    "nuxt-lazy-load": "^3.0.4",
     "nuxt-storage": "^1.2.2",
     "path": "^0.12.7",
     "tailwind-scrollbar-hide": "^1.1.7",

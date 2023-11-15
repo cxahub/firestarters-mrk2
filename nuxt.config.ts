@@ -9,12 +9,34 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts",
     "@nuxt/image",
     "nuxt-gtag",
+    "nuxt-lazy-load",
   ],
   gtag: {
     id: "G-GZH6M6GVV0",
   },
   image: {
     dir: "public",
+  },
+  azyLoad: {
+    // These are the default values
+    images: false,
+    videos: false,
+    audios: false,
+    iframes: false,
+    native: false,
+    directiveOnly: true,
+
+    // Default image must be in the public folder
+    defaultImage: "/images/default-image.jpg",
+
+    // To remove class set value to false
+    loadingClass: "isLoading",
+    loadedClass: "isLoaded",
+    appendClass: "lazyLoad",
+
+    observerConfig: {
+      // See IntersectionObserver documentation
+    },
   },
   css: ["~/assets/styles/main.css", "~/assets/styles/article.css"],
   app: {
