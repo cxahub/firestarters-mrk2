@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@nuxtjs/google-fonts",
     "@nuxt/image",
+    "@vueuse/nuxt",
     "nuxt-gtag",
     "nuxt-lazy-load",
   ],
@@ -17,7 +18,7 @@ export default defineNuxtConfig({
   image: {
     dir: "public",
   },
-  azyLoad: {
+  lazyLoad: {
     // These are the default values
     images: false,
     videos: false,
@@ -38,7 +39,11 @@ export default defineNuxtConfig({
       // See IntersectionObserver documentation
     },
   },
-  css: ["~/assets/styles/main.css", "~/assets/styles/article.css"],
+  css: [
+    "~/assets/styles/main.css",
+    "~/assets/styles/article.css",
+    "vue-final-modal/style.css",
+  ],
   app: {
     head: {
       htmlAttrs: {
@@ -99,6 +104,8 @@ export default defineNuxtConfig({
       API_PORT: process.env.API_PORT,
       API_ROOT: process.env.API_ROOT,
       API_VER: process.env.API_VER,
+      COOKIE_EXPIRES: process.env.COOKIE_EXPIRES,
+      LOCAL_STORAGE_EXPIRES: process.env.LOCAL_STORAGE_EXPIRES,
       DATEFORMAT: process.env.DATEFORMAT,
       COMPANY_TEL: process.env.COMPANY_TEL,
       NOREPLY_EMAIL: process.env.NOREPLY_EMAIL,
